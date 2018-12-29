@@ -1,0 +1,47 @@
+{
+  "pages": [
+    
+    "page/home/index",
+    "page/home/detail",
+    "page/home/joins",
+    "page/home/confirms",
+    "page/home/hblist",
+    "page/home/hbpro",
+    "page/home/setting",
+    "page/home/othersetting",
+    "page/home/addmeeting",
+    "page/home/addmeetingPreview",
+    "page/mine/index",
+    "page/mine/mineInfo",
+    "page/mine/nickName",
+    "page/mine/mineName",
+    "page/mine/minePhone",
+    "page/mine/setting",
+    "page/mine/unbindPhone",
+    "page/mine/active",
+    "page/mine/minekf",
+    "page/mine/moneyList",
+    "page/home/start"
+    
+     
+    
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ea5f3a",
+    "navigationBarTextStyle": "white",
+     
+    "navigationBarTitleText": "YY红包"
+     
+     
+    
+    
+  },
+  
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false
+}

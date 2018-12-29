@@ -1,0 +1,6 @@
+<!--page/home/start.wxml-->
+<view  class='startbtn'>
+    <button type='button' style='border:none; color:#00C676; ' plain='true'   open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo'>马上开启</button>
+</view>
+
+

@@ -1,0 +1,32 @@
+<!--page/mine/moneyList.wxml-->
+<view class='myMoney'>
+    <view class="moneynumb">{{mlist.money}}元</view>
+    <view class='moneynumb_desc'>当前保证金</view>
+</view>
+<view class='list_title'><center>支付记录</center></view>
+<view class="rcontent">
+    
+   <!-- wx:for="{{hbList.list}}" wx:for-index="index" wx:for-item="item" -->
+   <view class="joinsRow" wx:for="{{mlist.list}}" wx:for-index="index" wx:for-item="item">
+      <view class='fl'>
+          <view class='joinsDesc' style='padding:0;'>
+             <view class="{{item.type == 1?'wxshow':'wxhide'}}"><b>支付</b></view>
+             <view class="{{item.type == 2?'wxshow':'wxhide'}}"><b>退款</b></view>
+             <view class="{{item.type == 3?'wxshow':'wxhide'}}"><b>红包</b></view>
+             <view class="{{item.type == 4?'wxshow':'wxhide'}}"><b>企业付款</b></view>
+             订单号:{{item.out_trade_no}}
+             <view class='color1'>{{item.create_time}}</view>
+          </view>
+      </view>
+      <text class="moneyss {{item.type != 2?'wxshow':'wxhide'}}">{{item.total_fee/100}}元</text>
+      <text class="moneyss {{item.type == 2?'wxshow':'wxhide'}}">{{item.refund_fee/100}}元</text>
+      <view class='cl'></view>
+       
+   </view>
+
+   
+
+  
+
+</view>
+<view class='loadings'>{{showtext}}</view>

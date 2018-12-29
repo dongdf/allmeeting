@@ -1,0 +1,37 @@
+<!--page/home/confirms.wxml-->
+<!--page/home/joins.wxml-->
+<view class="rcontent {{memberlist.length>0?'wxshow':'wxhide'}}">
+    <view class='joinsRow' >
+      {{memberlist.length}}份保证金缴退款记录
+      <view class='cl'></view>
+       
+   </view>
+   <view class='joinsRow' style="overflow:hidden;" wx:for="{{memberlist}}" wx:for-index="index" wx:for-item="item" >
+      <view class='fl'>
+          <image class='joinPersonhead' src='{{item.avatarurl}}'></image>
+      </view>
+      <view class='fl'>
+          <view class='joinsDesc'>
+             <view>{{item.name}}</view>
+             <view class='color1'>{{item.sign_time}}</view>
+          </view>
+      </view>
+      <view class='moneyss_1'>
+      <view>{{item.refund_money}}元</view>
+      <view class="mstate {{item.type ==1?'wxshow':'wxhide'}} ">需全额退款</view>
+      <view class="mstate mstate_no {{item.type==2?'wxshow':'wxhide'}}">需迟到清算</view>
+      </view>
+      <view class='cl'></view>
+       
+   </view>
+
+   
+
+</view>
+
+<view class='act_group fixedbar'>
+       <form report-submit='true' bindsubmit='confirmLate'><button hover-class='tapbtn' class='actbtn actbtn_red' plain="true" form-type='submit' >确认清算</button></form>   
+      
+        
+</view>
+

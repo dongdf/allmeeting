@@ -1,0 +1,132 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": false,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.1",
+	"appid": "wx48bff25082147225",
+	"projectname": "yyxm",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 15,
+			"list": [
+				{
+					"id": 0,
+					"name": "confirms",
+					"pathName": "page/home/confirms",
+					"query": "id=267"
+				},
+				{
+					"id": -1,
+					"name": "add",
+					"pathName": "page/home/addmeeting",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "Preview",
+					"pathName": "page/home/addmeetingPreview",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "mine",
+					"pathName": "page/mine/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "home",
+					"pathName": "page/home/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "mineinfo",
+					"pathName": "page/mine/mineInfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "nickname",
+					"pathName": "page/mine/nickName",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "active",
+					"pathName": "page/mine/active",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "start",
+					"pathName": "page/home/start",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "joins",
+					"pathName": "page/home/joins",
+					"query": "id=74"
+				},
+				{
+					"id": -1,
+					"name": "setting",
+					"pathName": "page/home/setting",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "othersetting",
+					"pathName": "page/home/othersetting",
+					"query": "mid=51"
+				},
+				{
+					"id": -1,
+					"name": "kefu",
+					"pathName": "page/mine/minekf",
+					"query": "mid=51"
+				},
+				{
+					"id": 13,
+					"name": "hblist",
+					"pathName": "page/home/hblist",
+					"query": "mid=187"
+				},
+				{
+					"id": -1,
+					"name": "bzj",
+					"pathName": "page/mine/moneyList",
+					"query": "mid=130"
+				},
+				{
+					"id": 15,
+					"name": "detail",
+					"pathName": "page/home/detail",
+					"query": "mid=268"
+				}
+			]
+		}
+	}
+}

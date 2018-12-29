@@ -1,0 +1,73 @@
+<!--page/mine/index.wxml-->
+<view class='mdetail_mine_content rcontent'>
+      <view class='mine_item'>
+        <navigator url='./mineInfo'>
+              <view class='fl mt_person_head'><image src="{{mine.avatarurl}}"></image></view>
+              <view class='fl mt_person_info'>
+                <view class="fname1 minename">{{mine.nickname}}</view>
+                <view class="fname1 uuid">用户ID:{{mine.uuid}}</view>
+              </view>
+              <view class='fr mt_person_time'>
+                 <view class='mine_right'><i class="icon iconfont icon-enter"></i></view>
+              </view>
+              <view class='cl'></view>
+        </navigator>
+      </view>
+</view>
+
+<view class='mdetail_mine_content rcontent'>
+<navigator url='./active'>
+      <view class='mine_item'>
+            <label class='fl mt_filed'>我的活动</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'><i class="icon iconfont icon-enter"></i></view>
+            </view>
+            <view class='cl'></view>
+  </view>
+    </navigator>
+</view>
+
+<view class='mdetail_mine_content rcontent'>
+<navigator url='./moneyList'>
+      <view class=' mine_item'>
+            <label class='fl mt_filed'>我的保证金</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'><i class="icon iconfont icon-enter"></i></view>
+            </view>
+            <view class='cl'></view>
+  </view>
+  </navigator>
+</view>
+
+<view class='mdetail_mine_content rcontent'>
+<navigator url='./minekf'>
+      <view class=' mine_item mine_item_has'>
+            <label class='fl mt_filed'>客户服务</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'><i class="icon iconfont icon-enter"></i></view>
+            </view>
+            <view class='cl'></view>
+  </view>
+  </navigator>
+<navigator url='./setting'>
+  <view class=' mine_item '>
+            <label class='fl mt_filed'>设置</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'><i class="icon iconfont icon-enter"></i></view>
+            </view>
+            <view class='cl'></view>
+  </view>
+  </navigator>
+
+
+</view>
+
+<!-- <view class='mdetail_mine_content'>
+      <view class=' mine_item'>
+            <label class='fl mt_filed'>设置</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'><i class="icon iconfont icon-enter"></i></view>
+            </view>
+            <view class='cl'></view>
+  </view>
+</view> -->

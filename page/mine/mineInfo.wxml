@@ -1,0 +1,52 @@
+
+<view class='mdetail_mine_content rcontent'>
+      <view class='mine_item brd'>
+              <label class='fl mt_filed'>头像</label>
+              <view class='fr mt_person_time'>
+                 <view class='mine_right'><i class="icon iconfont icon-enter"></i></view>
+              </view>
+              <view class='fr mt_person_head' bindtap='uploadHead'><image src='{{mine.avatarurl}}'></image></view>
+              <view class='cl'></view>
+      </view>
+
+      <view class='mine_item brd'>
+          <navigator url='./nickName?citem={{mine.nickname}}'>
+            <label class='fl mt_filed'>昵称</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'>{{mine.nickname}}<i class="icon iconfont icon-enter"></i></view>
+            </view>
+            <view class='cl'></view>
+            </navigator>
+      </view>
+
+      <view class='mine_item brd'>
+          <navigator url='./mineName?citem={{mine.name}}'>
+            <label class='fl mt_filed'>姓名</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'>
+               <label  wx:if="{{mine.name !=''}}"  >{{mine.name}}</label>
+               <label  wx:if="{{mine.name ==''}}"  >未设置</label>
+               <i class="icon iconfont icon-enter"></i></view>
+            </view>
+            <view class='cl'></view>
+            </navigator>
+      </view>
+
+      <view class='mine_item'>
+            <navigator url='./minePhone?citem={{mine.mobile}}'>
+            <label class='fl mt_filed'>手机号</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'>
+               <label wx:if="{{mine.mobile !=''}}">{{mine.mobile}}</label>
+               <label wx:if="{{mine.mobile ==''}}">未设置</label>
+               <i class="icon iconfont icon-enter"></i></view>
+            </view>
+            <view class='cl'></view>
+            </navigator>
+      </view>
+
+
+
+</view>
+
+

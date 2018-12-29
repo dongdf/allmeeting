@@ -1,0 +1,16 @@
+<!--page/mine/minekf.wxml-->
+<form bindsubmit='addMessage' report-submit='true'>
+<view class='mdetail_content kfdata rcontent'>
+      <view class='mt_desc mt_title'>
+        <input  name="title" placeholder='标题'></input>
+      </view>
+      <view class='mt_desc'>
+        <textarea class='meeting_desc'  name="content" style='height:300px;' placeholder='留言'></textarea>
+      </view>
+</view>
+
+ <view class='act_group'>
+      <button class='actbtn' plain="true" form-type='submit'>提交</button>  
+      <button class=' actbtn_cancle' plain="true" bindtap='hisback'>取消</button>
+</view>
+</form>

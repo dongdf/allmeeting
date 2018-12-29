@@ -1,0 +1,85 @@
+<!--page/home/othersetting.wxml-->
+<!--page/home/setting.wxml-->
+
+<form bindsubmit='closeingMeeting' report-submit="true">
+<view class='rcontent'>
+
+<view class="mt_desc {{!isqunzhu?'wxshow':'wxhide'}}">
+            <label class='fl mt_filed mbottom'>设置关闭报名</label>
+            <label class='fr m_mc'>
+               <view class='t_right'>
+                 <switch checked bindchange="switch1Change"/>
+               </view>
+            </label>
+            <view class='cl'></view>
+  </view>
+
+
+
+ 
+
+      <!-- <view class='mt_desc'>
+          <label class='fl mt_filed'>不需要</label>
+          <view class='fr m_mc'><input  class='m_mc_input' placeholder='未设置'></input></view>
+          <view class='cl'></view>
+      </view> -->
+</view>
+
+<view class='rcontent'>
+
+    <view class='mt_desc'>
+          <label class='fl'>提醒</label>
+          <view class='fr m_mc'>
+            <!-- <view><i class="icon iconfont icon-coordinates_fill"></i>北京市昌平区</view> -->
+            <picker mode="selector" bindchange="bindSeatChange" value="{{seatList[seatidx]}}" range-key="name" range="{{seatList}}">
+                  <!-- <view class="{{seatList[seatidx].value == 0?'picker_tips':''}}">{{seatList[seatidx].name}}</view> -->
+                  <view class="{{seatList[seatidx].value == 0?'picker_tips':''}}">{{seatList[seatidx].name}}<i class="icon iconfont icon-enter"></i></view>
+              </picker>
+            <!-- <view class='tips_text'><i class="icon iconfont icon-coordinates_fill"></i>请选择活动地址</view> -->
+          </view>
+          <view class='cl'></view>
+      </view>
+      
+
+       <view class="mt_desc {{!isqunzhu?'wxshow':'wxhide'}}">
+          <label class='fl'>关闭报名时间</label>
+          <label class='fr m_mc'>
+               <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="name">
+                <view class="picker ">
+         <view style="color:#808080;" class="{{meeting.close_datetime?'wxhide':'wxshow'}}">请选择报名关闭时间</view>
+         <view class="smfont {{meeting.close_datetime?'wxshow':'wxhide'}}">
+         {{meeting.close_datetime}}
+         </view> 
+        </view>
+              </picker>
+          </label>
+          <view class='cl'></view>
+      </view>
+
+      <view class="mt_desc {{!isqunzhu?'wxshow':'wxhide'}}">
+            <label class='fl mt_filed mbottom'>报名人数上限 </label>
+            <label class='fr m_mc'>
+               <view class='t_right'>
+               <label class="fr" style="position:relative; top:2px;margin-left:10px;">人</label>
+                 <input  class='m_mc_input fr' style="" name="quota" value="{{meeting.quota}}" placeholder='未设置'></input>
+                <view class='cl'></view>
+               </view>
+            </label>
+            <view class='cl'></view>
+    </view>
+</view>
+<view class='act_group'>
+        <!-- <button class='actbtn actbtn_red' plain="true" form-type='submit'>邀请朋友参加</button>   -->
+        <button hover-class='tapbtn' class=' actbtn_cancle' plain="true"form-type='submit'>确定</button>
+</view>
+</form>
+
+      
+ 
+
+
+
+
+
+
+

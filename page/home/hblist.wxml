@@ -1,0 +1,166 @@
+<!--page/home/hblist.wxml-->
+
+<view class='rcontent'>
+  <view class='rowp nopd' style='border:none;'>
+    <view class='col col-100'>
+      <view class='zhutis'>
+        {{meetinginfo.title}}
+
+      </view>
+      <view class='meetingcontent'>{{meetinginfo.content}}</view>
+      <view class='cl'></view>
+    </view>
+  </view>
+</view>
+
+<view class='mdetail_mine_content rcontent' bindtap='isshowInfo'>
+ 
+      <view class=' mine_item'>
+            <label class='fl mt_filed'>活动详情</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'><i style="transform:rotate(180deg);"  class="icon iconfont icon-unfold {{showdetailInfo?'wxshow':'wxhide'}}"></i><i class="icon iconfont icon-unfold {{showdetailInfo?'wxhide':'wxshow'}}"></i></view>
+            </view>
+            <view class='cl'></view>
+  </view>
+ 
+</view>
+
+<view class="rcontent {{showdetailInfo?'wxshow':'wxhide'}}">
+  <view class='rowp nopd' style='padding:0'>
+    <view class='col col-100'>
+      <view class='time_detail'>发起人
+        <text class='fr'>{{meetinginfo.userName}}</text>
+        <view class='cl'></view>
+      </view>
+      <view class='time_detail'>时间
+        <text class='fr'>{{meetinginfo.active_time}}</text>
+        <view class='cl'></view>
+      </view>
+      <view class='time_detail'>保证金
+        <text class='fr'>{{meetinginfo.promise_money}}元</text>
+        <view class='cl'></view>
+      </view>
+      <!-- <view class='time'><text class='fr'>{{meetinginfo.adr_name}}</text><view class='cl'></view></view> -->
+      <view class='time_detail'>地址
+        <text class='fr'>{{meetinginfo.address}}</text>
+        <view class='cl'></view>
+      </view>
+    </view>
+    <view class='cl'></view>
+  </view>
+  <view class='mt_detail_map'>
+    <map id="map" longitude="{{meetinginfo.address_Lng}}" bindtap='openmap' latitude="{{meetinginfo.address_Lat}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" class="{{mininshow?'wxhide':'wxshow'}}" show-location style="width: 100%; height: 160px;"></map>
+  </view>
+
+
+
+</view>
+
+
+
+<view  class="rcontent {{hbInfo.late_money>0?'wxshow':'wxhide'}}" >
+        <view class=' mine_item rowp '>
+                  <label class='fl mt_filed'>迟到红包</label>
+                  <view class='fr m_mc'>
+                    <view class='mine_right_arrow' style='color:#000'>
+                    
+                    <i style="opacity:0" class="icon iconfont icon-enter"></i>{{hbInfo.late_money}}元
+                    </view>
+                  </view>
+                  <view class='cl'></view>
+        </view>
+ </view>
+
+<!-- <view class="rcontent">
+    <view class="joinsRow {{hbInfo.get_red_pack_count>0?'wxshow':'wxhide'}}" >
+      {{hbInfo.red_pack_count}}个红包，{{hbInfo.get_red_pack_count}}个红包已被领取
+      <view class='cl'></view>
+       
+   </view>
+   <view class='joinsRow' wx:for="{{hbInfo.get_red_pack}}" wx:for-index="index" wx:for-item="item" >
+      <view class='fl'>
+          <image class='joinPersonhead' src='{{item.avatarurl}}'></image>
+      </view>
+      <view class='fl'>
+          <view class='joinsDesc'>
+             <view>【已领取】{{item.name}}</view>
+             <view class='color1'>{{item.sign_time}}</view>
+          </view>
+      </view>
+      <text class='moneyss'>{{item.promise_money}}元</text>
+      <view class='cl'></view>
+       
+   </view>
+
+   <view class='joinsRow' wx:for="{{hbInfo.not_get_red_pack}}" wx:for-index="index" wx:for-item="item" >
+      <view class='fl'>
+          <image class='joinPersonhead' src='{{item.avatarurl}}'></image>
+      </view>
+      <view class='fl'>
+          <view class='joinsDesc'>
+             <view>【未领取】{{item.name}}</view>
+             <view class='color1'>{{item.sign_time}}</view>
+          </view>
+      </view>
+      <text class='moneyss'>{{item.total_fee/100}}元</text>
+      <view class='cl'></view>
+       
+   </view>
+
+  
+
+</view> -->
+
+
+
+
+<!-- <view class="rcontent {{hbInfo.sign_money>0?'wxshow':'wxhide'}}">
+        <view class=' mine_item rowp '>
+                  <label class='fl mt_filed'>准时红包</label>
+                  <view class='fr m_mc'>
+                    <view class='mine_right_arrow' style='color:#000'>
+                    
+                    <i style="opacity:0" class="icon iconfont icon-enter"></i>{{hbInfo.sign_money}}元
+                    </view>
+                  </view>
+                  <view class='cl'></view>
+        </view>
+ </view> -->
+
+<view class="rcontent {{memberlist.length>0?'wxshow':'wxhide'}}">
+    <view class='joinsRow' >
+      {{memberlist.length}}份保证金缴退款记录
+      <view class='cl'></view>
+       
+   </view>
+   <view class='joinsRow' style="overflow:hidden;" wx:for="{{memberlist}}" wx:for-index="index" wx:for-item="item" >
+      <view class='fl'>
+          <image class='joinPersonhead' src='{{item.avatarurl}}'></image>
+      </view>
+      <view class='fl'>
+          <view class='joinsDesc'>
+             <view>{{item.name}}</view>
+             <view class='color1'>{{item.sign_time}}</view>
+          </view>
+      </view>
+      <view class='moneyss_1'>
+      <view>{{item.refund_money}}元</view>
+      <view class="mstate {{item.refund_money!=0?'wxshow':'wxhide'}} ">已全额退款</view>
+      <view class="mstate mstate_no {{item.refund_money==0?'wxshow':'wxhide'}}">违约已清算</view>
+      </view>
+      <view class='cl'></view>
+       
+   </view>
+
+   
+
+</view>
+
+<!-- <view class='hbdesc'>
+<label>
+<navigator style='display:inline' url='../home/hbpro'>
+<i class="icon iconfont icon-prompt"></i>红包分配请看具体业务规则。
+</navigator>
+</label>
+</view> -->
+

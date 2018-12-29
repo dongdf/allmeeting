@@ -1,0 +1,39 @@
+<!--page/home/confirms.wxml-->
+<!--page/home/joins.wxml-->
+<view class="tipsfixed"><label> 勾选为准时签到的人员，不勾选为迟到人员</label></view>
+<view style='height:20px;'></view>
+<view class='rcontent' style='margin-bottom:80px'>
+
+<checkbox-group bindchange="checkboxChange">
+   <view class='joinsRow' wx:for="{{memberlist}}" wx:for-index="index" wx:for-item="item" >
+      <view class='fl'>
+          <image class='joinPersonhead2' style="width:30px; height:30px;" src='{{item.avatarurl}}'></image>
+      </view>
+      <view class='fl'>
+          <view class='joinsDesc2'>
+             <view><label style='font-weight:bold;'>{{item.nickname}}</label>/{{item.mobile}}</view>
+             <view class="{{item.join_status == 2?'wxshow':'wxhide'}}">签到状态:{{item.sign_time}}</view>
+             <view class="{{item.join_status != 2?'wxshow':'wxhide'}}">签到状态:未签到</view>
+          </view>
+      </view>
+      
+      <view class='cl'></view>
+       <checkbox class='ckperson' checked value="{{item.open_id}}" />
+   </view>
+
+
+
+</checkbox-group>
+
+
+
+
+
+</view>
+
+<view class='act_group fixedbar'>
+       <form report-submit='true' bindsubmit='confirmLate'><button hover-class='tapbtn' class='actbtn actbtn_red' plain="true" form-type='submit' >确认</button></form>   
+      
+        
+</view>
+

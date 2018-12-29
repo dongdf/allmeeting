@@ -1,0 +1,126 @@
+<!--page/home/detail.wxml-->
+<!-- <view class='mdetail_content'>
+      <view class='mt_desc mt_title'>titan投资会titan投资会titan投资会</view>
+      <view class='mt_desc'>迟到的人买单</view>
+</view> -->
+<view class='rcontent'>
+<view  class='cl' style="height:10px;"></view>
+  <view class='rowp nopd' style='border:none;'>
+    <view class='col col-100'>
+      <view class='zhutis' style='background:#FFF;'>
+        {{meetinginfo.title}}
+        <view class='cl'></view>
+      </view>
+      <view class='meetingcontent'>{{meetinginfo.content}}</view>
+      <view class='cl'></view>
+    </view>
+  </view>
+  <view  class='cl' style="height:10px;"></view>
+</view>
+
+<view class="end_act">
+  该活动已结束,你可以点击创建新活动
+</view>
+
+<view class='mdetail_mine_content rcontent' bindtap='isshowInfo'>
+ 
+      <view class=' mine_item'>
+            <label class='fl mt_filed'>活动详情</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'><i style="transform:rotate(180deg);"  class="icon iconfont icon-unfold {{showdetailInfo?'wxshow':'wxhide'}}"></i><i class="icon iconfont icon-unfold {{showdetailInfo?'wxhide':'wxshow'}}"></i></view>
+            </view>
+            <view class='cl'></view>
+  </view>
+ 
+</view>
+<view class="{{showdetailInfo?'wxshow':'wxhide'}}">
+
+<view class='rcontent'>
+<view  class='cl' style="height:10px;"></view>
+  <view class='rowp nopd' style='padding:0;border:none;'>
+    <view class='col col-100' style="border:none;">
+      <view class='time_detail'>发起人
+        <text class='fr'>{{meetinginfo.userName}}</text>
+        <view class='cl'></view>
+      </view>
+      <view class='time_detail'>时间
+        <text class='fr'>{{meetinginfo.active_time}}</text>
+        <view class='cl'></view>
+      </view>
+      <view class='time_detail'>活动费用<i bindtap="showNoticeMoney" class="icon iconfont icon-prompt"></i>
+        <text class='fr'>{{meetinginfo.promise_money}}元</text>
+        <view class='cl'></view>
+      </view>
+      <!-- <view class='time'><text class='fr'>{{meetinginfo.adr_name}}</text><view class='cl'></view></view> -->
+      <view class='time_detail' >活动地点
+        <text class='fr' >{{meetinginfo.adr_name}}</text>
+        <view class='cl'></view>
+      </view>
+      <view class='time_detail' style='border:none;'>地址
+        <text class='fr' bindtap='openmap' style=' color:#00C676; width:70%;'>{{meetinginfo.address}}</text>
+        <view class='cl'></view>
+      </view>
+    </view>
+   
+  </view>
+  <!-- <view class='mt_detail_map'>
+    <map id="map" longitude="{{meetinginfo.address_Lng}}"  latitude="{{meetinginfo.address_Lat}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" class="{{mininshow?'wxhide':'wxshow'}}" show-location style="width: 100%; height: 160px;"></map>
+  </view> -->
+  
+<view  class='cl' style="height:10px;"></view>
+
+
+</view>
+
+
+
+
+
+
+
+
+
+</view>
+
+
+<view class='rcontent'>
+
+  <view class="alljoins">
+    <label></label>
+    <text>已参加</text>
+    <label></label>
+  </view>
+
+
+  <view class='joinsRow' wx:for="{{memberlist}}" wx:for-index="index" wx:for-item="item">
+    <view class='fl'>
+      <image class='joinPersonhead' src='{{item.avatarurl}}'></image>
+    </view>
+    <view class='fl'>
+      <view class='joinsDesc'>
+        <view>{{item.nickname}}</view>
+        <view>{{item.join_time}}</view>
+      </view>
+    </view>
+    <view class='cl'></view>
+    <label class="joinState {{item.join_status != 2?'wxshow':'wxhide'}}">
+      <text>已缴费</text>
+    </label>
+    <label class="joinState {{item.join_status == 2?'wxshow':'wxhide'}}" style=' box-shadow: 0px 0px 0px 6px #F14E21 inset;'>
+      <text>已签到</text>
+    </label>
+  </view>
+
+</view>
+
+
+
+ <view class='commfixedBottom'>
+  <view class='act_group'>
+    <button class="actbtn actbtn_red " bindtap='addnewmeeting' hover-class='tapbtn' plain="true"  >创建新活动</button>
+    
+  </view>
+</view>
+ 
+ 
+ 

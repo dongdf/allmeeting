@@ -1,0 +1,41 @@
+<!--page/mine/active.wxml-->
+<view class='myacttab' >
+   <view class='col col-50 '><view bindtap='changetab' data-tabidx="1" class=" nocolbg_tab {{active == 1?'curs':''}}">我发起的</view></view>
+   <view class='col col-50'><view  bindtap='changetab' data-tabidx="2" class=" nocolbg_tab {{active == 2?'curs':''}}">我报名的</view></view>
+   <view class='cl'></view>
+</view>
+
+
+<view>
+<view style='height:50px;'></view>
+
+
+ <view class='rcontent' wx:for="{{lists}}" wx:for-index="index" wx:for-item="item">
+   <view class='cl' style='height:10px;'></view>
+                <navigator url='../home/detail?mid={{item.id}}'>
+                      <view class='rowp nopd' style='border:none;'>
+                        <view class='col col-100'>
+                            <view class='zhutis'>
+                              {{item.title}}
+                              
+                            </view>
+                            <label class="rightarrow" style="top:3px;"><text>{{item.active_time}}</text><i class="icon iconfont icon-enter"></i></label>
+                          <!-- <view class='time'>待分余额{{item.wait_allot_money}}元</view> -->
+                          
+                          </view>
+                        <view class='cl'></view>
+                      </view>
+                    </navigator>
+                    <view class='cl' style='height:10px;'></view>
+  </view>
+  <view class='loadings'>{{showtext}}</view>
+         
+
+
+
+
+
+
+
+
+</view>

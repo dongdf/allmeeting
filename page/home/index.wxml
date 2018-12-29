@@ -1,0 +1,251 @@
+<!-- <view class='wrap'>
+	<view>
+		<view class='date-show'>
+			<view class='lt-arrow' bindtap='lastMonth'>
+      <i class="icon iconfont icon-return"></i>
+				<image src='../images/nextMonth.png' mode='aspectFit'></image>
+			</view>
+			{{year}}年{{month}}月
+			<view class='rt-arrow' bindtap='nextMonth'>
+			<i class="icon iconfont icon-enter"></i>
+			</view>
+		</view>
+	</view>
+	<view class='header'>
+		<view wx:for='{{date}}' class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>{{item}}<view></view></view>
+	</view>
+	<view class='date-box'>
+		<view wx:for='{{dateArr}}' class='{{isToday == item.isToday ? "nowDay" : ""}}' data-date='{{item.isToday}}'>			
+			<view class='date-head'>
+				<view bindtap='checkkDay' data-obj='{{item}}'>{{item.dateNum}}</view>
+			</view>
+			<view class='date-weight'>{{item.weight}}</view>
+		</view>
+	</view>
+</view> -->
+<view class='topimg'><image src='../../image/top_bg.png'></image></view>
+ <view class='rcontent_home' style='margin-top:100rpx;'>
+   <view class='userinfos'>
+        <view class='userinfos_img'><image src='{{mine.avatarurl}}'></image></view>
+        <view class='userinfo_name'>{{mine.nickname}}
+        <label bindtap='bindPhone' class="{{!mine.mobile?'wxinlineshow':'wxhide'}}"><image class='phoneSign' src='../../image/sport4_0.png'></image></label>
+        <label bindtap='bindPhone' class="{{mine.mobile?'wxinlineshow':'wxhide'}}"><image class='phoneSign' src='../../image/sport4_1.png'></image></label>
+        </view>
+   </view>
+
+   <view class='rowp offset_top nopd' >
+        <view class='col col-50'>
+          <view  class="sp_mine">
+          <navigator url='../mine/active?tab=1'>
+              <view class='spt1'>{{mymeeting.my}}</view>
+             <view class='spt2'>我创建的</view>
+          </navigator>
+             
+          </view>
+        </view>
+        <view class='col col-50'>
+          <view  class="sp_mine">
+          <navigator url='../mine/active?tab=2'>
+             <view class='spt1'>{{mymeeting.other}}</view>
+             <view class='spt2'>我报名的</view>
+             </navigator>
+          </view>
+        </view>
+        <view class='cl'></view>
+   
+   </view>
+
+<view style='min-height:200px'>
+  <view   wx:for="{{lists.ing}}" wx:for-index="index" wx:for-item="item">
+    <navigator wx:if="{{index ==0}}" url='../home/detail?mid={{item.id}}'>
+          <view class='rowp nopd' style='padding-left:15px;padding-right:15px;'>
+            <view class='col col-100'>
+                <view class='zhutis'>
+                   <label class='dot'></label>{{item.title}}
+                  <label class='fmoneys'>费用{{item.promise_money}}元</label>
+                </view>
+              <view class='time_ss'>{{item.active_time}}</view>
+              <view class='time'>{{item.adr_name}}</view>
+              <!-- <view class='time'>{{item.address}}</view> -->
+              </view>
+            <view class='cl'></view>
+          </view>
+      </navigator>
+    
+
+    
+    <navigator wx:if="{{index>0}}" url='../home/detail?mid={{item.id}}'>
+          <view class='rowp nopd' style='padding-left:15px;padding-right:15px;'>
+            <view class='col col-100'>
+                <view class='zhutis'>
+                  <label class='dot' style='background:#00C676'></label>{{item.title}}
+                   
+                </view>
+                <label class="rightarrow" style='top:3px;'><text>{{item.active_time}}</text><i class="icon iconfont icon-enter"></i></label>
+              <view class='time'>费用{{item.wait_allot_money}}元</view>
+              
+              </view>
+            <view class='cl'></view>
+          </view>
+      </navigator>
+    
+
+    </view> 
+    <view class="noreslut {{ (!lists.ing || lists.ing.length==0)?'wxshow':'wxhide'}}">
+       <image class='norecordImg' src='../../image/sport1.png'></image>
+        <view class='notext'>您没有正在进行的活动
+点击创建活动与小伙伴一起聚会吧</view>
+    </view>
+
+    <view style='height:10px' class='cl'></view>
+ </view>
+
+
+
+
+ <view class='act_group'>
+ <view class='btntips_c'><label>您有3次一分钱创建活动的机会</label><image src='../../image/tips_home.png'></image></view>
+       <form report-submit='true' bindsubmit='goaddmeeting'><button hover-class='tapbtn' class='actbtn actbtn_sport' plain="true" form-type='submit'><image class='start_icos' src='../../image/sport2.png'></image>创建活动</button></form>
+       <button hover-class='tapbtn' class=' actbtn_share'  open-type="share" plain="true" ><image class='start_icos' style='width:25px; height:20px; top:2px; margin-right:5px;' src='../../image/sport3.png'></image>分享给好友</button>
+   
+       <!-- <form report-submit='true' bindsubmit='gomine'><button hover-class='tapbtn' class=' actbtn_cancle' plain="true" form-type='submit' >我</button></form>  -->
+        
+</view>
+
+<view style='height:10px' class='cl'></view>
+
+
+
+ </view>
+
+<view>
+<view class='cmmtitle'  wx:if="{{lists.ing.length>0}}"></view>
+<!-- 即将开始 -->
+    <!-- <view  wx:for="{{lists.ing}}" wx:for-index="index" wx:for-item="item" class='rcontent'>
+    <navigator wx:if="{{index ==0}}" url='../home/detail?mid={{item.id}}'>
+          <view class='rowp nopd'>
+            <view class='col col-100'>
+                <view class='zhutis'>
+                  {{item.title}}
+                  <label class='fmoneys'>待分余额{{item.wait_allot_money}}元</label>
+                </view>
+              <view class='time_ss'>{{item.active_time}}</view>
+              <view class='time'>{{item.adr_name}}</view>
+              <view class='time'>{{item.address}}</view>
+              </view>
+            <view class='cl'></view>
+          </view>
+      </navigator>
+    
+
+    
+    <navigator wx:if="{{index>0}}" url='../home/detail?mid={{item.id}}'>
+          <view class='rowp nopd'>
+            <view class='col col-100'>
+                <view class='zhutis'>
+                  {{item.title}}
+                   
+                </view>
+                <label class="rightarrow"><text>{{item.active_time}}</text><i class="icon iconfont icon-enter"></i></label>
+              <view class='time'>待分余额{{item.wait_allot_money}}</view>
+              
+              </view>
+            <view class='cl'></view>
+          </view>
+      </navigator>
+    
+
+    </view> -->
+
+
+</view>
+
+
+
+<view>
+<!-- <view class='cmmtitle' wx:if="{{lists.close.length>0}}">待关闭</view>
+
+      
+        
+            <view class='rcontent' wx:for="{{lists.close}}" wx:for-index="index" wx:for-item="item">
+            <navigator url='../home/detail?mid={{item.id}}'>
+                  <view class='rowp nopd'>
+                    <view class='col col-100'>
+                        <view class='zhutis'>
+                          {{item.title}}
+                          
+                        </view>
+                        <label class="rightarrow"><text>{{item.active_time}}</text><i class="icon iconfont icon-enter"></i></label>
+                      <view class='time'>待分余额{{item.wait_allot_money}}元</view>
+                      
+                      </view>
+                    <view class='cl'></view>
+                  </view>
+              </navigator>
+            </view>
+         
+        
+
+         
+         
+        
+
+
+</view>
+
+<view> -->
+<!-- <view class='cmmtitle '>MORE</view> -->
+
+
+     
+
+
+
+
+
+</view>
+
+
+<!-- <view>
+<view class='cmmtitle' wx:if="{{lists.end.length>0}}">已结束</view>
+                <view style='opacity:.6' wx:for="{{lists.end}}" wx:for-index="index" wx:for-item="item" class='rcontent'>
+                <navigator url='../home/latedetail?mid={{item.id}}'>
+                      <view class='rowp nopd'>
+                        <view class='col col-100'>
+                            <view class='zhutis'>
+                              {{item.title}}
+                              
+                            </view>
+                            <label class="rightarrow"><text>10月20日</text><i class="icon iconfont icon-enter"></i></label>
+                          <view class='time'>待分余额{{item.wait_allot_money}}元</view>
+                          
+                          </view>
+                        <view class='cl'></view>
+                      </view>
+                    </navigator>
+                </view>
+
+</view> -->
+
+
+
+<!-- <view class='act_group fixedbar'>
+       <form report-submit='true' bindsubmit='goaddmeeting'><button hover-class='tapbtn' class='actbtn actbtn_red' plain="true" form-type='submit'  >发起活动</button></form>   
+       <form report-submit='true' bindsubmit='gomine'><button hover-class='tapbtn' class=' actbtn_cancle' plain="true" form-type='submit' >我</button></form> 
+        
+</view> -->
+
+
+
+<view class="present_fixed {{hidepopShow?'wxshow':'wxhide'}}">
+    <view class='present_content'>
+       <image class='imgbg' src='../../image/hbao_bg.png'></image>
+       <view class='present_content_text'>
+            <view class='present_t_text'>获得<text>3次</text>一分钱创建聚会保证金</view>
+            <view class='allCounts'><image src='../../image/hbao_btn.png' bindtap='hidepop'></image></view>
+       </view>
+       <view class='cl'></view>
+    </view>
+</view>
+
+

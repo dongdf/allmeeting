@@ -1,0 +1,207 @@
+<!--page/home/detail.wxml-->
+<!-- <view class='mdetail_content'>
+      <view class='mt_desc mt_title'>titan投资会titan投资会titan投资会</view>
+      <view class='mt_desc'>迟到的人买单</view>
+</view> -->
+
+
+<view class='rcontent'>
+      <view class='rowp nopd'>
+            <view class='col col-100'>
+                <view class='zhutis'>
+                  主题主题主题主题主
+                  <label class='fmoneys'>待分余额1000元</label>
+                </view>
+              <view class='time_ss'>11月20日 周二 17:46</view>
+              <view class='time'>人民大学</view>
+              <view class='time'>北京市海淀区北三环西路66号</view>
+              </view>
+            <view class='cl'></view>
+      </view>
+      <view class='mt_detail_map'>
+            <map id="map" longitude="113.324520" latitude="23.099994" scale="14" controls="{{controls}}" bindcontroltap="controltap"   show-location style="width: 100%; height: 160px;"></map>
+      </view>
+
+      <!-- <view class='mt_desc'>
+          <label class='fl mt_filed'>我的保证金<i class="icon iconfont icon-prompt"></i></label>
+          <label class='fr m_mc'>100.00</label>
+          <view class='cl'></view>
+      </view>
+      <view class='mt_desc'>
+          <label class='fl mt_filed'>聚会保证金<i class="icon iconfont icon-prompt"></i></label>
+          <label class='fr m_mc'>400.00</label>
+          <view class='cl'></view>
+      </view> -->
+
+      
+
+
+</view>
+
+<view class='act_group'>
+        <button class='actbtn actbtn_red' plain="true" form-type='submit'>签到</button>
+        <button class='actbtn actbtn_red' plain="true" form-type='submit'>领取红包</button>
+        <button class='actbtn actbtn_red' plain="true" form-type='submit'>查看</button>
+        <!-- <button class=' actbtn_cancle' plain="true" bindtap='hisback'>修改信息</button> -->
+</view>
+
+<view class='jointitle'><label></label><text>5人参加</text><label></label></view>
+
+<view class='rowp rowno'>
+   <view class='col col-25'>
+      <view class='nickperson'>
+       <view class='joinhead'>
+        <image class='joinPersonhead' src='../../image/txdemo.jpg'></image>
+       </view>
+       <view class='nickperson_name'>电动电动蝶阀电动蝶阀蝶阀</view>
+      </view>
+   </view>
+   <view class='col col-25'>
+      <view class='nickperson'>
+       <view class='joinhead'>
+        <image class='joinPersonhead' src='../../image/txdemo.jpg'></image>
+       </view>
+       <view class='nickperson_name'>电动电动蝶阀电动蝶阀蝶阀</view>
+      </view>
+   </view>
+
+   <view class='col col-25'>
+      <view class='nickperson'>
+       <view class='joinhead'>
+        <image class='joinPersonhead' src='../../image/txdemo.jpg'></image>
+       </view>
+       <view class='nickperson_name'>电动电动蝶阀电动蝶阀蝶阀</view>
+      </view>
+   </view>
+
+   <view class='col col-25'>
+      <view class='nickperson'>
+       <view class='joinhead'>
+        <image class='joinPersonhead' src='../../image/txdemo.jpg'></image>
+       </view>
+       <view class='nickperson_name'>电动电动蝶阀电动蝶阀蝶阀</view>
+      </view>
+   </view>
+   <view class='col col-25'>
+      <view class='nickperson'>
+       <view class='joinhead'>
+        <image class='joinPersonhead' src='../../image/txdemo.jpg'></image>
+       </view>
+       <view class='nickperson_name'>电动电动蝶阀电动蝶阀蝶阀</view>
+      </view>
+   </view>
+
+   <view class='col col-25'>
+      <view class='nickperson'>
+       <view class='joinhead'>
+        <image class='joinPersonhead' src='../../image/txdemo.jpg'></image>
+       </view>
+       <view class='nickperson_name'>电动电动蝶阀电动蝶阀蝶阀</view>
+      </view>
+   </view>
+
+   <view class='col col-25'>
+      <view class='nickperson'>
+       <view class='joinhead'>
+        <image class='joinPersonhead' src='../../image/txdemo.jpg'></image>
+       </view>
+       <view class='nickperson_name'>电动电动蝶阀电动蝶阀蝶阀</view>
+      </view>
+   </view>
+
+   <view class='cl'></view>
+</view>
+
+<view class='joinperson_more'>
+  <navigator url='../home/joins'>查看</navigator>
+</view>
+
+<!-- <view class='mdetail_content'> -->
+  <!-- <view class='mt_desc'>
+            <label class='fl mt_filed'>已报名4/4人</label>
+            <label class='fr m_mc'>
+              <label class='time_act moreinfo'>
+                  <i class="icon iconfont icon-unfold"></i> 
+                  <i class="icon iconfont icon-unfold last"></i>
+              </label>  
+            </label>
+            <view class='cl'></view>
+  </view> -->
+
+  <!-- <view class='mt_desc'>
+          <view class='fl mt_person_head'><image src='../../image/txdemo.jpg'></image></view>
+          <view class='fl mt_person_info'>
+            <view class="fname1">沈维然</view>
+            <view class="fname2">138-2111-2234</view>
+          </view>
+          <view class='fr mt_person_time'>
+             <view class='mt_state'>迟到了</view>
+            <view>2018-12-12 10:23</view>
+          </view>
+          <view class='cl'></view>
+  </view>
+
+  <view class='mt_desc'>
+          <view class='fl mt_person_head'>头像</view>
+          <view class='fl mt_person_info'>
+            <view class="fname1">沈维然</view>
+            <view class="fname2">138-2111-2234</view>
+          </view>
+          <view class='fr mt_person_time'>
+             <view class='mt_state'>签到成功</view>
+            <view>2018-12-12 10:23</view>
+          </view>
+          <view class='cl'></view>
+  </view>
+
+  <view class='mt_desc'>
+          <view class='fl mt_person_head'>头像</view>
+          <view class='fl mt_person_info'>
+            <view class="fname1">沈维然</view>
+            <view class="fname2">138-2111-2234</view>
+          </view>
+          <view class='fr mt_person_time'>
+             <view class='mt_state'>签到成功</view>
+            <view>2018-12-12 10:23</view>
+          </view>
+          <view class='cl'></view>
+  </view>
+
+  <view class='mt_desc'>
+          <view class='fl mt_person_head'>头像</view>
+          <view class='fl mt_person_info'>
+            <view class="fname1">沈维然</view>
+            <view class="fname2">138-2111-2234</view>
+          </view>
+          <view class='fr mt_person_time'>
+             <view class='mt_state'>迟到了</view>
+            <view>2018-12-12 10:23</view>
+          </view>
+          <view class='cl'></view>
+  </view> -->
+
+<!-- </view> -->
+
+<!-- <view class='mt_act_content'>
+   <view class="act_tips">发起人及报名人可见其联系方式</view>
+   <view class='act_m_btn acting_act'>
+      <view class="act_time">09:00 AM</view>
+      <view class="act_time_text">点击签到</view>
+   </view>
+
+   <view class='act_m_btn acting_dis'>
+      <view class="act_time">09:00 AM</view>
+      <view class="act_time_text">很遗憾，迟到了</view>
+   </view>
+
+   <view class='act_m_btn acting_sucess'>
+      <view class="act_time">09:00 AM</view>
+      <view class="act_time_text">签到成功</view>
+   </view>
+   
+</view>
+
+<view class='act_group'>
+      <view class='actbtn'>分享聚会</view>
+      <view class='actbtn'>我也要建</view>
+</view> -->

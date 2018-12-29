@@ -1,0 +1,16 @@
+<!--page/mine/unbindPhone.wxml-->
+<view class='mdetail_content rcontent'>
+      <view class=' mt_desc smf mt_title'>
+        <input placeholder='手机号' class='smf' value='13888888888'></input>
+        <label class='clearbtns'><i class="icon iconfont icon-close"></i></label>
+      </view>
+      <view class='mt_desc smf mt_title'>
+        <input placeholder='验证码' class='smf' value=''></input>
+        <label class='clearbtns_code'>获取验证码</label>
+      </view>
+     
+</view>
+ <view class='act_group'>
+      <button class='actbtn'  plain="true"  bindtap='unphone'>确认</button>
+      <button class=' actbtn_cancle'  plain="true"  bindtap='hisback'>取消</button>
+</view>

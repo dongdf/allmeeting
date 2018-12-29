@@ -1,0 +1,4 @@
+/* page/home/latedetail.wxss */
+page{
+  background: #EEE;
+}

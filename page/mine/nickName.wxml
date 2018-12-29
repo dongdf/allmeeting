@@ -1,0 +1,14 @@
+<!--page/mine/nickName.wxml-->
+<form bindsubmit='updateMine' bindreset="formReset"  report-submit='true'>
+  <view class='mdetail_content rcontent'>
+        <view class='mt_desc smf mt_title'>
+          <input name="nickname" placeholder='请输入' class='smf' value='{{nickname}}'></input>
+          <label class='clearbtns' bindtap='resetf'><button formType="reset">Reset</button><i class="icon iconfont icon-close"></i></label>
+        </view>
+      
+  </view>
+  <view class='act_group'>
+        <button class='actbtn' plain="true" form-type='submit'>提交</button>  
+        <button class=' actbtn_cancle' plain="true" bindtap='hisback'>取消</button>
+  </view>
+</form>

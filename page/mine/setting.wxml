@@ -1,0 +1,31 @@
+<!--page/mine/setting.wxml-->
+
+
+ 
+ <view class='rcontent'> <navigator url="./unbindPhone">
+            <view class='mine_item rowp'>
+                  <label class='fl mt_filed'>解绑手机</label>
+                  <view class='fr m_mc'>
+                    <view class='mine_right_arrow'><i class="icon iconfont icon-enter"></i></view>
+                  </view>
+                  <view class='cl'></view>
+        </view>
+           </navigator>
+  </view>
+ 
+
+<view class='rcontent'>
+        <view class=' mine_item rowp '>
+                  <label class='fl mt_filed'>版本号</label>
+                  <view class='fr m_mc'>
+                    <view class='mine_right_arrow'>
+                    
+                    <i style="opacity:0" class="icon iconfont icon-enter"></i>1.0
+                    </view>
+                  </view>
+                  <view class='cl'></view>
+        </view>
+ </view>
+ 
+
+

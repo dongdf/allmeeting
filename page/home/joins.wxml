@@ -1,0 +1,23 @@
+<!--page/home/joins.wxml-->
+<view class='rcontent'>
+   <view class='joinsRow' wx:for="{{memberlist}}" wx:for-index="index" wx:for-item="item" >
+      <view class='fl'>
+          <image class='joinPersonhead' src='{{item.avatarurl}}'></image>
+      </view>
+      <view class='fl'>
+          <view class='joinsDesc'>
+             <view>{{item.nickname}}</view>
+             <view>{{item.mobile}}</view>
+          </view>
+      </view>
+      <view class='cl'></view>
+       
+   </view>
+
+
+
+
+
+
+
+</view>

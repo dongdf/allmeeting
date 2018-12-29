@@ -1,0 +1,284 @@
+<!--page/home/addmeeting.wxml-->
+<!--page/home/detail.wxml-->
+ <form bindsubmit="addmeetings" bindreset='resetmeeting' report-submit="true">
+<view class='rcontent'>
+        <view class='mt_desc mt_title'>
+                <input name="title" value="{{title}}" placeholder='活动标题'></input>
+              </view>
+
+               <view class="mt_desc {{!mineshow?'wxshow':'wxhide'}}">
+        <textarea  class='meeting_desc' name="content" value="{{content}}" style="height:100px;" placeholder='请输入活动描述 如一起打球'></textarea>
+      </view>
+      <!-- <view class='mt_desc'>
+        <textarea class='meeting_desc' placeholder='违约规则（迟到，缺席者的惩罚）'></textarea>
+      </view> -->
+</view>
+
+<view class='rcontent'>
+      <view class='mt_desc'>
+          <label class='fl mt_filed'>保证金
+          <i bindtap="showPromiseMoney" class="icon iconfont icon-prompt"></i>
+          </label>
+          <view class='fr m_mc'>
+          <picker mode="selector" bindchange="bindSeatChangeMoney" value="{{pmoneyList[pmoneyIdx]}}" range-key="name" range="{{pmoneyList}}">
+                  <!-- <view class="{{seatList[seatidx].value == 0?'picker_tips':''}}">{{seatList[seatidx].name}}</view> -->
+                  <view class="{{pmoneyList[pmoneyIdx].value == 0?'picker_tips':''}}">{{pmoneyList[pmoneyIdx].name}}<i class="icon iconfont icon-enter"></i></view>
+              </picker>
+          <!-- <input name="promise_money" type="text" disabled="{{modifyId}}" value="{{promise_money}}" class='m_mc_input' placeholder='20~1000元'></input> -->
+          </view>
+          <view class='cl'></view>
+      </view>
+</view>
+
+<view class="serverMoney {{serverm?'wxshow':'wxhide'}}">保证金超过50元(包含)，不能准时赴约签到的人员，微信将扣除1%的手续费</view>
+
+<view class='rcontent'>
+      <view class='mt_desc'>
+          <label class='fl'>时间</label>
+          <label class='fr m_mc'>
+              <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="name">
+                <view class="picker ">
+         <view style="color:#808080;" class="{{meeting.active_time?'wxhide':'wxshow'}}">请选择活动时间</view>
+         <view class="smfont {{meeting.active_time?'wxshow':'wxhide'}}">
+         {{showactiveTime}}
+         </view> 
+        </view>
+              </picker>
+          </label>
+          <view class='cl'></view>
+      </view>
+
+
+      <view class='mt_desc'>
+          <label class='fl mt_filed'>活动地点
+           
+          </label>
+          <view class='fr m_mc'><input name="adr_name" type="text" disabled="{{modifyId}}" value="{{adr_name}}" class='m_mc_input' placeholder='请输入场馆名称'></input></view>
+          <view class='cl'></view>
+      </view>
+
+      <view class='mt_desc'>
+          <label class='fl'>地址</label>
+          <view class='fr m_mc' bindtap='chooseStartLocation'>
+            <view class="{{meeting.adr_name!==''?'wxshow':'wxhide'}}" ><i class="icon iconfont icon-coordinates_fill"></i>{{meeting.address}}</view>
+            <view class="tips_text {{meeting.adr_name===''?'wxshow':'wxhide'}}"  ><i class="icon iconfont icon-coordinates_fill"></i>请选择活动地址</view>
+          </view>
+          <view class='cl'></view>
+      </view>
+      <view class='mt_desc wxhide'>
+          <label class='fl mt_filed'>参与人数
+          <!-- <i class="icon iconfont icon-prompt"></i> -->
+          </label>
+          <view class='fr m_mc'><input name="persons"  type="number" disabled="{{modifyId}}" value="{{persons}}" class='m_mc_input' placeholder='参与人数'></input></view>
+          <view class='cl'></view>
+      </view>
+
+      <view class="mt_desc">
+          <label class='fl'>提醒 <i bindtap="showNotice" class="icon iconfont icon-prompt"></i></label>
+          <view class='fr m_mc'>
+            <!-- <view><i class="icon iconfont icon-coordinates_fill"></i>北京市昌平区</view> -->
+            <picker mode="selector" bindchange="bindSeatChange" value="{{seatList[seatidx]}}" range-key="name" range="{{seatList}}">
+                  <!-- <view class="{{seatList[seatidx].value == 0?'picker_tips':''}}">{{seatList[seatidx].name}}</view> -->
+                  <view class="{{seatList[seatidx].value == 0?'picker_tips':''}}">{{seatList[seatidx].name}}<i class="icon iconfont icon-enter"></i></view>
+              </picker>
+            <!-- <view class='tips_text'><i class="icon iconfont icon-coordinates_fill"></i>请选择活动地址</view> -->
+          </view>
+          <view class='cl'></view>
+      </view>
+
+      <view class='mt_desc wxhide'>
+            <label class='fl mt_filed mbottom'>关闭报名 </label>
+            <label class='fr m_mc'>
+               <view class='t_right' bindtap='gosetting'>
+                 <label wx:if="{{meeting.close_datetime}}"   >{{meeting.close_datetime}} <text wx:if="{{meeting.quota}}">{{meeting.quota}}人</text><i class="icon iconfont icon-enter"></i></label>
+                 <label wx:if="{{!meeting.close_datetime}}">设置<i class="icon iconfont icon-enter"></i></label>
+               </view>
+            </label>
+            <view class='cl'></view>
+    </view>
+
+    
+      
+ 
+
+
+
+
+</view>
+
+
+
+
+<view class='rcontent'>
+     
+</view>
+      
+ 
+
+
+<!-- <view class='mdetail_content'>
+      <view class='mt_desc'>
+          <label class='fl'>发起人</label>
+          <label class='fr m_mc'>沈维然</label>
+          <view class='cl'></view>
+      </view>
+      <view class='mt_desc'>
+          <label class='fl'>截止时间</label>
+          <view class='fr m_mc'>
+            <picker mode="date" value="{{date1}}"   bindchange="bindDateChange1">
+              <view class="picker">
+                <label class="{{date1?'wxshow':'wxhide'}}">{{date1}}</label>
+                <label class="tips_text {{!date1?'wxshow':'wxhide'}}">请选择截止时间</label>
+              </view>
+            </picker>
+          </view>
+          <view class='cl'></view>
+      </view>
+      
+      <view class='mt_desc'>
+          <label class='fl'>活动地址</label>
+          <view class='fr m_mc'>
+            <view><i class="icon iconfont icon-coordinates_fill"></i>北京市昌平区</view>
+            <view class='tips_text'><i class="icon iconfont icon-coordinates_fill"></i>请选择活动地址</view>
+          </view>
+          <view class='cl'></view>
+      </view>
+      <view class='mt_detail_map'>
+            <map id="map" longitude="113.324520" latitude="23.099994" scale="14" controls="{{controls}}" bindcontroltap="controltap"   show-location style="width: 100%; height: 160px;"></map>
+      </view>
+
+      
+
+      
+
+
+</view>
+
+<view class='mdetail_content'>
+
+    <view class='mt_desc'>
+          <label class='fl mt_filed'>设置保证金<i class="icon iconfont icon-prompt"></i></label>
+          <label class='fr m_mc'>100.00</label>
+          <view class='cl'></view>
+      </view>
+      <view class='mt_desc'>
+          <label class='fl mt_filed'>保证金<i class="icon iconfont icon-prompt"></i></label>
+          <view class='fr m_mc'><input  class='m_mc_input' placeholder='未设置'></input></view>
+          <view class='cl'></view>
+      </view>
+
+
+
+
+</view>
+
+
+
+<view class='mdetail_content'>
+  <view class='mt_desc'>
+            <label class='fl mt_filed mbottom'>是否参加聚会<i class="micons icon iconfont icon-prompt"></i></label>
+            <label class='fr m_mc'>
+               <view class='t_right'>
+                 <switch checked bindchange="switch1Change"/>
+               </view>
+            </label>
+            <view class='cl'></view>
+  </view>
+
+</view>
+
+<view class='mdetail_content'>
+  <view class='mt_desc'>
+            <label class='fl mt_filed mbottom'>姓名 </label>
+            <label class='fr m_mc'>
+               <view class='t_right'>
+                 <switch checked bindchange="switch1Change"/>
+               </view>
+            </label>
+            <view class='cl'></view>
+  </view>
+
+  <view class='mt_desc'>
+            <label class='fl mt_filed mbottom'>手机号 </label>
+            <label class='fr m_mc'>
+               <view class='t_right'>
+                 <switch checked bindchange="switch1Change"/>
+               </view>
+            </label>
+            <view class='cl'></view>
+  </view>
+
+  <view class='mt_desc'>
+            <label class='fl mt_filed mbottom'>关门人数 </label>
+            <label class='fr m_mc'>
+               <view class='t_right'>
+                 <input  class='m_mc_input' placeholder='未设置'></input>
+               </view>
+            </label>
+            <view class='cl'></view>
+  </view>
+
+</view> -->
+
+
+
+<!-- <view class='mt_act_content'> -->
+   <!-- <view class="act_tips">当报名人数达到关门人数时会结束活动报名</view> -->
+   <!-- <view class='act_m_btn acting_act'>
+      <view class="act_time">09:00 AM</view>
+      <view class="act_time_text">点击签到</view>
+   </view>
+
+   <view class='act_m_btn acting_dis'>
+      <view class="act_time">09:00 AM</view>
+      <view class="act_time_text">很遗憾，迟到了</view>
+   </view>
+
+   <view class='act_m_btn acting_sucess'>
+      <view class="act_time">09:00 AM</view>
+      <view class="act_time_text">签到成功</view>
+   </view> -->
+   
+<!-- </view> -->
+<view class='commfixedBottom'>
+<view class='act_group'> 
+      <button   class="actbtn actbtn_orange {{!modifyId?'wxshow':'wxhide'}}" hover-class='tapbtn'   form-type='submit'><image style='width:25px; height:22px; top:2px;margin-right:5px;' class='start_icos' src='../../image/yy_pay.png'></image>创建活动并支付</button>
+      <button   class="actbtn actbtn_orange {{modifyId?'wxshow':'wxhide'}}" hover-class='tapbtn'  form-type='submit'>保存</button>
+      <!-- <view class='actbtn'>我也要建</view> -->
+</view>
+</view>
+</form>
+
+
+<!-- 手机号绑定 -->
+<view class="bindinfos {{mineshow?'wxshow':'wxhide'}}">
+  <form bindsubmit='compeleMine'>
+  <view class='bindinfos_content'>
+     <view class='bigtiips'>完善联系方式<view class='smalltips'>以便您的朋友在聚会时可以及时联系您。</view></view>
+<view class='mdetail_content'>
+  <view class='mt_desc'>
+            <label class='fl col col-20 mt_filed mbottom'>姓名 </label>
+            <label class='fr col col-80 m_mc'>
+               <view class='t_right'>
+                 <input name="mineName" value="{{mineName}}" class='m_mc_input' placeholder='请输入姓名'></input>
+               </view>
+            </label>
+            <view class='cl'></view>
+  </view>
+
+  <view class='mt_desc'>
+            <label class='fl col col-20 mt_filed mbottom'>手机号 </label>
+            <label class='fr col col-80 m_mc'>
+               <view class='t_right'>
+                 <input  name="minePhone" value="{{minePhone}}" class='m_mc_input' placeholder='请输入手机号'></input>
+               </view>
+            </label>
+            <view class='cl'></view>
+  </view>
+ 
+  <button type="primary" form-type='submit' hover-class='tapbtn' class='compbtnPerson'>完成</button>
+    </view>
+    
+  </view>
+  </form>
+</view>

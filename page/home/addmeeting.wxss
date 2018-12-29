@@ -1,0 +1,4 @@
+/* page/home/addmeeting.wxss */
+page{
+  background: #ECECEC;
+}

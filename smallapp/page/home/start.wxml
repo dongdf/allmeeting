@@ -1,6 +1,7 @@
 <!--page/home/start.wxml-->
-
+<view class='starttips'>免费获取3次1分钱聚会保证金</view>
 <view  class='startbtn'>
+
     <button type='button' style='border:none; color:#333; ' plain='true'   open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo'>马上开启</button>
 </view>
 

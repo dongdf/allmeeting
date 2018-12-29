@@ -1,6 +1,14 @@
 /* reset */
 
 @import "/page/common/lib/iconfont.wxss";
+.starttips{
+  text-align: center;
+  font-size:12px; color:#FFF;
+  position: fixed;
+  bottom:10%;
+  width:100%;
+  opacity: .6
+}
 .startbtn{
   color:#00C676;
   position: fixed;

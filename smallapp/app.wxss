@@ -796,7 +796,7 @@ page {
 
 .rcontent{
   /* overflow: hidden; */
-   box-shadow: 0 0 5px #CCC;
+   /* box-shadow: 0 0 5px #CCC; */
   border-radius: 6px;
   margin:10px 10px;
    

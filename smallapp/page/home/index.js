@@ -133,9 +133,9 @@ Page({
   },
   onShow:function(){
     if (!wx.getStorageSync('ppid')) {
-      // wx.redirectTo({
-      //   url: '../home/start',
-      // })
+      wx.redirectTo({
+        url: '../home/start',
+      })
 
     } else {
       this.getcomming();

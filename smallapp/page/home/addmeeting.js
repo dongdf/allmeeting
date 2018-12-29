@@ -131,7 +131,7 @@ Page({
       formId: e.detail.formId,
       title:e.detail.value.title,
       content:e.detail.value.content,
-      promise_money: e.detail.value.promise_money,
+      promise_money: this.data.meeting.promise_money,
       address_Lng: this.data.meeting.address_Lng,//地点经度
       address_Lat: this.data.meeting.address_Lat,//地点纬度
       address: this.data.meeting.address,
@@ -422,6 +422,10 @@ Page({
       // this.getmeetInfo();
       // this.onLoad()
     }
+    var idx = this.data.pmoneyIdx;
+    this.setData({
+      'meeting.promise_money': this.data.pmoneyList[idx].value
+    })
 
     // this.setData({
     //   'meeting.close_time': getApp().globalData.meetinginfo.close_time,

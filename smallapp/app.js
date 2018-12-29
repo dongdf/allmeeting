@@ -1,5 +1,5 @@
 //app.js
-const baseUrl = "https://pc.quankuaile.com/Project/yueba/index.php/"
+const baseUrl = "https://ddf.my12399.com/index.php/"
 
 const util = require('./util/util.js')
 const formatTime = util.formatTime 

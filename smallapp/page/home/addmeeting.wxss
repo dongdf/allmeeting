@@ -1,4 +1,7 @@
 /* page/home/addmeeting.wxss */
 page{
-  background: #ECECEC;
+  background: #eee;
+}
+.rcontent{
+  box-shadow: 0 0 0 #FFF;
 }

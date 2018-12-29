@@ -51,6 +51,7 @@ Page({
             },error=>{
               wx.showModal({
                 title: '提示',
+                showCancel:false,
                 content: JSON.stringify(error),
               })
             })

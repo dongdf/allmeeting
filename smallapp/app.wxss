@@ -4,7 +4,7 @@
 .startbtn{
   color:#00C676;
   position: fixed;
-  bottom:20%;
+  bottom:15%;
   border-radius: 10px;
   left:25%;
   height:50px;width:50%;
@@ -1078,3 +1078,4 @@ navigator{
   width:414rpx;
   height:178rpx;
 }
+

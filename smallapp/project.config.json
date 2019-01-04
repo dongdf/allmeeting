@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": false,
 		"minified": true,
@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 8,
 			"list": [
 				{
 					"id": 0,
@@ -79,10 +79,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "start",
 					"pathName": "page/home/start",
-					"query": ""
+					"query": "popenid=3938rkfd"
 				},
 				{
 					"id": 9,
@@ -124,7 +124,13 @@
 					"id": 15,
 					"name": "detail",
 					"pathName": "page/home/detail",
-					"query": "mid=268"
+					"query": "mid=80"
+				},
+				{
+					"id": -1,
+					"name": "minePhone",
+					"pathName": "page/mine/minePhone",
+					"query": "mid=80"
 				}
 			]
 		}

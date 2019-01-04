@@ -701,9 +701,16 @@ Page({
     })
   },
   addnewmeeting:function(){
-    wx.redirectTo({
-      url: '../home/index',
-    })
+    if (wx.getStorageSync('ppid')){
+      wx.redirectTo({
+        url: '../home/index',
+      })
+    }else{
+      wx.redirectTo({
+        url: '../home/start',
+      })
+    }
+    
   },
 
   /**
@@ -717,6 +724,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
     getApp().globalData.allperson = []
     this.getmeber();
     this.getoptbtns();

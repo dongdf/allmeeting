@@ -1,7 +1,7 @@
 <!--page/mine/active.wxml-->
 <view class='myacttab' >
-   <view class='col col-50 '><view bindtap='changetab' data-tabidx="1" class=" nocolbg_tab {{active == 1?'curs':''}}">我发起的</view></view>
-   <view class='col col-50'><view  bindtap='changetab' data-tabidx="2" class=" nocolbg_tab {{active == 2?'curs':''}}">我报名的</view></view>
+   <view class='col col-50 '><view bindtap='changetab' data-tabidx="1" class=" nocolbg_tab {{active == 1?'curs':''}}">我创建的<label class='line'></label></view></view>
+   <view class='col col-50'><view  bindtap='changetab' data-tabidx="2" class=" nocolbg_tab {{active == 2?'curs':''}}">我报名的<label class='line'></label></view></view>
    <view class='cl'></view>
 </view>
 
@@ -17,7 +17,6 @@
                         <view class='col col-100'>
                             <view class='zhutis'>
                               {{item.title}}
-                              
                             </view>
                             <label class="rightarrow" style="top:3px;"><text>{{item.active_time}}</text><i class="icon iconfont icon-enter"></i></label>
                           <!-- <view class='time'>待分余额{{item.wait_allot_money}}元</view> -->

@@ -18,21 +18,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.tab ==2){
+    // if (options.tab ==2){
       
-      this.setData({
-        active:2,
-        state:false,
-      })
-      this.getalllist(true);
-    }else{
+    //   this.setData({
+    //     active:2,
+    //     state:false,
+    //   })
+    //   this.getalllist(true);
+    // }else{
       
-      this.setData({
-        active: 1,
-        state: false,
-      })
-      this.getalllist(false);
-    }
+    //   this.setData({
+    //     active: 1,
+    //     state: false,
+    //   })
+    //   this.getalllist(false);
+    // }
     
     wx.setNavigationBarTitle({
       title: '我的活动',
@@ -87,11 +87,13 @@ Page({
       active:e.target.dataset.tabidx
     })
     if (e.target.dataset.tabidx == 1){
+      getApp().globalData.mymeeting = 1
       this.setData({
         state:true
       })
        
     }else{
+      getApp().globalData.mymeeting = 2
       this.setData({
         state: false
       })
@@ -110,6 +112,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      lists:[]
+       
+    })
+    if (getApp().globalData.mymeeting == 1){
+
+        this.setData({
+          active: 1,
+          state: true,
+        })
+      this.getalllist();
+
+    }else{
+
+      this.setData({
+        active: 2,
+        state: false,
+      })
+      this.getalllist();
+
+    }
 
   },
 

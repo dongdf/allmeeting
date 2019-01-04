@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    popenid:''
 
   },
 
@@ -15,7 +16,21 @@ Page({
     wx.setNavigationBarTitle({
       title: '',
     })
+    if(options.popenid){
+      this.setData({
+        popenid: options.popenid
+      })
+    }
 
+    if (wx.getStorageSync('ppid')) {
+      wx.redirectTo({
+        url: '../home/index',
+      })
+    }
+
+  },
+  addinva:function(){
+    getApp().post('invite/add', { pid:this.data.popenid})
   },
   bindGetUserInfo: function (e) {
     console.log(e);
@@ -42,6 +57,7 @@ Page({
                 //   content: '12',
                 // })
                 wx.hideLoading();
+                that.addinva();
                 wx.redirectTo({
                   url: '../home/index',
                 })
@@ -78,6 +94,7 @@ Page({
 
 
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

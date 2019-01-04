@@ -7,6 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgNumb:[],
+    imgList:[],
+    xieyi:true,
     submitbtn:false,
     modifyId:'',
     persons:'',
@@ -27,6 +30,7 @@ Page({
     content:'',
     showactiveTime:'',
     meeting:{
+      imgs:[],
       address_Lng: '',//地点经度
       address_Lat: '',//地点纬度
       address: '',
@@ -81,10 +85,30 @@ Page({
     multiIndex: 0,
 
   },
+  delimg:function(e){
+    console.log(e)
+    var idx = e.currentTarget.dataset.imgidx;
+    var temps = this.data.imgList
+    temps.splice(idx, 1);
+    this.setData({
+      imgList:temps
+    })
+  },
+  xieyiact:function(){
+    if(this.data.xieyi){
+      this.setData({
+        xieyi:false,
+      })
+    }else{
+      this.setData({
+        xieyi: true,
+      })
+    }
+  },
   showPromiseMoney:function(){
     wx.showModal({
       title: '提示',
-      content: '保证金说明',
+      content: '保证金是为了保证参会人员按时到场，到场签到后保证金原路返回',
       showCancel:false
     })
   },
@@ -123,6 +147,21 @@ Page({
   },
   addmeetings:function(e){
     var that = this;
+    if (!that.data.xieyi){
+      wx.showModal({
+        title: '提示',
+        content: '请先同意软件使用协议',
+        showCancel:false,
+        success:function(res){
+          if(res.confirm){
+            that.setData({
+              xieyi:true
+            })
+          }
+        }
+      })
+      return false;
+    }
     // wx.showModal({
     //   title: 'formId',
     //   content: e.detail.formId+'',
@@ -131,6 +170,7 @@ Page({
       formId: e.detail.formId,
       title:e.detail.value.title,
       content:e.detail.value.content,
+      imgs: JSON.stringify(this.data.meeting.imgs),
       promise_money: this.data.meeting.promise_money,
       address_Lng: this.data.meeting.address_Lng,//地点经度
       address_Lat: this.data.meeting.address_Lat,//地点纬度
@@ -639,13 +679,82 @@ Page({
     
 
   },
+  uploadpic:function(e){
+    var that = this;
+
+    wx.chooseImage({
+      count: 9,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths;
+        that.startupload(tempFilePaths);
+        wx.showLoading({
+          title: '上传中...',
+        })
+  
+
+      }
+    })
+
+
+  },
+  startupload:function(objs){
+    var that = this;
+    var i = 0;
+    var showtemp=this.data.imgList;
+    up();
+    function up(){
+      wx.uploadFile({
+        url: 'https://ddf.my12399.com/index.php/affair/addAttachment', // 仅为示例，非真实的接口地址
+        filePath: objs[i],
+        name: 'file',
+        formData: {
+          user: 'test'
+        },
+        fail: (res) => {
+         
+        },
+        complete: function (complete) {
+          console.log(complete.data);
+          var orgimg = JSON.parse(complete.data);
+          console.log(orgimg.data);
+          showtemp.push({img: orgimg.data });
+          i++;
+          if (i <objs.length) {
+            up(); 
+          } else {
+            that.setData({
+              imgList:showtemp,
+              "meeting.imgs":showtemp
+            })
+            wx.hideLoading()
+            return false;
+
+          }
+
+        }
+      })
+
+    }
+    
+  },
   getmineInfo:function(){
     getApp().get('user/findUserInfo').then(res => {
+
+      var temps = this.data.pmoneyList;
+      if (res.free_count<=0){
+        temps.splice(0,1);
+        this.setData({
+          pmoneyList: temps
+        })
+      }
       this.setData({
         mineinfo: res
       })
       if(!this.data.mineinfo.mobile){
-        console.log('1221')
+        
         this.setData({
           mineshow:true
           
@@ -695,6 +804,23 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var that = this;
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '【' + that.data.mine.nickname + '】邀请您使用大象聚会',
+      path: '/page/home/start?popenid=' + wx.getStorageSync('ppid') ? wx.getStorageSync('ppid') : '',
+      imageUrl: '../../image/share.jpg',
+      success: function (res) {
+        // 转发成功
+        console.log(res);
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
 
   }
 })

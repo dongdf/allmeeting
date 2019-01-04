@@ -36,6 +36,7 @@ App({
     return formatTime(date,fmt)
 
   },
+  
   uploadmedia:function(url,data){
     //http://192.168.1.133:8080/
     var promise = new Promise((resolve, reject) => {
@@ -178,6 +179,7 @@ App({
     }
   },
   globalData: {
+    mymeeting:1,
     zfsign:false,
     share: false,  // 分享默认为false
     height: 0,

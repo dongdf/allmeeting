@@ -27,7 +27,7 @@
  <view class='rcontent_home' style='margin-top:100rpx;'>
    <view class='userinfos'>
         <view class='userinfos_img'><image src='{{mine.avatarurl}}'></image></view>
-        <view class='userinfo_name'>{{mine.nickname}}
+        <view class='userinfo_name'>{{mine.name?mine.name:mine.nickname}}
         <label bindtap='bindPhone' class="{{!mine.mobile?'wxinlineshow':'wxhide'}}"><image class='phoneSign' src='../../image/sport4_0.png'></image></label>
         <label bindtap='bindPhone' class="{{mine.mobile?'wxinlineshow':'wxhide'}}"><image class='phoneSign' src='../../image/sport4_1.png'></image></label>
         </view>
@@ -35,20 +35,20 @@
 
    <view class='rowp offset_top nopd' >
         <view class='col col-50'>
-          <view  class="sp_mine">
-          <navigator url='../mine/active?tab=1'>
+          <view  class="sp_mine" data-tabidx="1" bindtap='gomyMeeting'>
+           
               <view class='spt1'>{{mymeeting.my}}</view>
              <view class='spt2'>我创建的</view>
-          </navigator>
+          
              
           </view>
         </view>
         <view class='col col-50'>
-          <view  class="sp_mine">
-          <navigator url='../mine/active?tab=2'>
+          <view  class="sp_mine" data-tabidx="2"  bindtap='gomyMeeting'>
+           
              <view class='spt1'>{{mymeeting.other}}</view>
              <view class='spt2'>我报名的</view>
-             </navigator>
+            
           </view>
         </view>
         <view class='cl'></view>
@@ -62,7 +62,7 @@
             <view class='col col-100'>
                 <view class='zhutis'>
                    <label class='dot'></label>{{item.title}}
-                  <label class='fmoneys'>费用{{item.promise_money}}元</label>
+                  <label class='fmoneys'>保证金{{item.promise_money}}元</label>
                 </view>
               <view class='time_ss'>{{item.active_time}}</view>
               <view class='time'>{{item.adr_name}}</view>
@@ -72,7 +72,6 @@
           </view>
       </navigator>
     
-
     
     <navigator wx:if="{{index>0}}" url='../home/detail?mid={{item.id}}'>
           <view class='rowp nopd' style='padding-left:15px;padding-right:15px;'>
@@ -82,7 +81,7 @@
                    
                 </view>
                 <label class="rightarrow" style='top:3px;'><text>{{item.active_time}}</text><i class="icon iconfont icon-enter"></i></label>
-              <view class='time'>费用{{item.wait_allot_money}}元</view>
+              <view class='time'>{{item.adr_name}}元</view>
               
               </view>
             <view class='cl'></view>
@@ -104,9 +103,9 @@
 
 
  <view class='act_group'>
- <view class='btntips_c'><label>您有3次一分钱创建活动的机会</label><image src='../../image/tips_home.png'></image></view>
-       <form report-submit='true' bindsubmit='goaddmeeting'><button hover-class='tapbtn' class='actbtn actbtn_sport' plain="true" form-type='submit'><image class='start_icos' src='../../image/sport2.png'></image>创建活动</button></form>
-       <button hover-class='tapbtn' class=' actbtn_share'  open-type="share" plain="true" ><image class='start_icos' style='width:25px; height:20px; top:2px; margin-right:5px;' src='../../image/sport3.png'></image>分享给好友</button>
+ <view class="btntips_c {{mine.free_count>0?'wxshow':'wxhide'}}"><label>您有{{mine.free_count}}次一分钱创建活动的机会</label><image src='../../image/tips_home.png'></image></view>
+       <form report-submit='true' bindsubmit='goaddmeeting'><button hover-class='tapbtn' class='actbtn actbtn_sport' plain="true" form-type='submit'><i style="font-weight:bold;" class="icon iconfont icon-add"></i>创建活动</button></form>
+       <button hover-class='tapbtn' class=' actbtn_share'  open-type="share" plain="true" ><image class='start_icos' style='width:25px; height:20px; top:2px; margin-right:5px;' src='../../image/sport3.png'></image>分享给好友<text class='sharet'>免费获取一分钱聚会保证金</text></button>
    
        <!-- <form report-submit='true' bindsubmit='gomine'><button hover-class='tapbtn' class=' actbtn_cancle' plain="true" form-type='submit' >我</button></form>  -->
         
@@ -237,11 +236,11 @@
 
 
 
-<view class="present_fixed {{hidepopShow?'wxshow':'wxhide'}}">
+<view class="present_fixed {{tipsucess?'wxshow':'wxhide'}}">
     <view class='present_content'>
        <image class='imgbg' src='../../image/hbao_bg.png'></image>
        <view class='present_content_text'>
-            <view class='present_t_text'>获得<text>3次</text>一分钱创建聚会保证金</view>
+            <view class='present_t_text'>获得<text>{{mine.free_count}}次</text>一分钱创建聚会保证金</view>
             <view class='allCounts'><image src='../../image/hbao_btn.png' bindtap='hidepop'></image></view>
        </view>
        <view class='cl'></view>

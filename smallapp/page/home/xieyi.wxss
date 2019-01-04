@@ -1,0 +1,4 @@
+/* page/home/xieyi.wxss */
+page{
+  background: #FFF;
+}

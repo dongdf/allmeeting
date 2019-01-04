@@ -13,10 +13,35 @@
         <textarea class='meeting_desc' placeholder='违约规则（迟到，缺席者的惩罚）'></textarea>
       </view> -->
 </view>
-
 <view class='rcontent'>
       <view class='mt_desc'>
-          <label class='fl mt_filed'>保证金
+          <label class='fl mt_filed'>活动图片(选填)</label>
+          
+          <view class='cl'></view>
+      </view>
+      <view class='rowp' style='padding-top:0;'>
+         <view class='col col-25' wx:for="{{imgList}}" wx:for-index="index" wx:for-item="item">
+           <view class='picadd' >
+               <label class='delpic' bindtap='delimg' data-imgIdx="{{index}}"><i class="icon iconfont icon-close"></i></label>
+               <image mode='scaleToFill' class='upic' src='{{item.img}}'></image>
+           </view>
+         </view>
+
+         
+
+         <view bindtap='uploadpic' class="col col-25 {{imgList.length>=9?'wxhide':'wxshow'}}">
+           <view class='picadd'>
+              <i class="icon iconfont icon-picture"></i>
+              <view class="addpics">上传图片</view>
+           </view>
+         </view>
+         
+         <view class='cl'></view>
+      </view>
+</view>
+<view class='rcontent'>
+      <view class='mt_desc'>
+          <label class='fl mt_filed'>到场保证金
           <i bindtap="showPromiseMoney" class="icon iconfont icon-prompt"></i>
           </label>
           <view class='fr m_mc'>
@@ -50,10 +75,10 @@
 
 
       <view class='mt_desc'>
-          <label class='fl mt_filed'>活动地点
+          <label class='fl mt_filed'>地点名称
            
           </label>
-          <view class='fr m_mc'><input name="adr_name" type="text" disabled="{{modifyId}}" value="{{adr_name}}" class='m_mc_input' placeholder='请输入场馆名称'></input></view>
+          <view class='fr m_mc'><input name="adr_name" type="text" disabled="{{modifyId}}" value="{{adr_name}}" class='m_mc_input' placeholder='请输入地点名称'></input></view>
           <view class='cl'></view>
       </view>
 
@@ -108,7 +133,16 @@
 
 
 
-
+<view class="syxy">
+   
+    
+   <label  bindtap="xieyiact" ><i  class="icon iconfont  {{xieyi?'icon-success_fill':'icon-success'}} "></i>我已同意</label>
+    <navigator url='./xieyi'>
+    <text>软件使用协议</text>
+    </navigator>
+   
+   
+   </view>
 <view class='rcontent'>
      
 </view>
@@ -276,7 +310,7 @@
             <view class='cl'></view>
   </view>
  
-  <button type="primary" form-type='submit' hover-class='tapbtn' class='compbtnPerson'>完成</button>
+  <button type="primary" style='background:#ea5f3a' form-type='submit' hover-class='tapbtn' class='compbtnPerson'>完成</button>
     </view>
     
   </view>

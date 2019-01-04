@@ -6,6 +6,7 @@ const app = getApp()
 
 Page({
   data: {
+    tipsucess:false,
     hidepopShow:true,
     mymeeting:{my:0,other:0},
     mine:{},
@@ -19,11 +20,19 @@ Page({
     todayIndex: 0
   },
   bindPhone:function(){
+    var that = this;
     if (this.data.mine.mobile){
       wx.showModal({
         title: '',
-        content: '手机号为' + this.data.mine.mobile,
-        showCancel:false
+        content: '手机号为' + this.data.mine.mobile+'点击确定进入修改',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../mine/minePhone?citem='+that.data.mine.mobile,
+            })
+          }
+        }
+        
       })
       return false;
     }else{
@@ -33,7 +42,7 @@ Page({
         success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
-              url: '../home/addmeeting',
+              url: '../mine/minePhone',
             })
           }
         }
@@ -43,13 +52,20 @@ Page({
     
   },
   hidepop:function(){
+    wx.setStorageSync('showt', 1)
     this.setData({
-      hidepopShow:false
+      tipsucess:false
     })
   },
   getmineinfo() {
     getApp().get('user/findUserInfo').then(res => {
       console.log(res);
+      if (res.free_count>0 && !wx.getStorageSync('showt')){
+        this.setData({
+          tipsucess: true
+        })
+
+      }
       this.setData({
         mine: res
       })
@@ -247,20 +263,31 @@ Page({
     console.log(e);
 
   },
+  gomyMeeting:function(e){
+    console.log(e)
+    getApp().globalData.mymeeting = e.currentTarget.dataset.tabidx;
+    wx.navigateTo({
+      url: '../mine/active',
+    })
+  },
   onShareAppMessage: function (res) {
 
     var that = this;
     if (res.from === 'button') {
       // 来自页面内转发按钮
-      console.log(res.target)
+      // console.log(res.target)
     }
     return {
-      title: '【'+that.data.mine.nickname+'】邀请您用全民运动',
-      path: '/page/home/start',
+      title: '【'+that.data.mine.nickname+'】邀请您使用大象聚会',
+      path: '/page/home/start?popenid=' + wx.getStorageSync('ppid') ? wx.getStorageSync('ppid'):'',
       imageUrl: '../../image/share.jpg',
       success: function (res) {
-        // 转发成功
-        console.log(res);
+        console.log(res)
+        if (res.errMsg == 'shareAppMessage:ok') {
+          getApp().post('share/add');
+          console.log('分享回调')
+        }
+        
       },
       fail: function (res) {
         // 转发失败

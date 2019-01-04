@@ -18,6 +18,24 @@
   <view  class='cl' style="height:10px;"></view>
 </view>
 
+<view class="mdetail_mine_content rcontent {{meetinginfo.imgs.length>0?'wxshow':'wxhide'}}" >
+ 
+      <view class=' mine_item' bindtap='isshowInfo'>
+            <label class='fl mt_filed'>活动图片</label>
+            <view class='fr m_mc'>
+               <view class='mine_right_arrow'><i style="transform:rotate(180deg);"  class="icon iconfont icon-unfold {{showdetailInfo?'wxshow':'wxhide'}}"></i><i class="icon iconfont icon-unfold {{showdetailInfo?'wxhide':'wxshow'}}"></i></view>
+            </view>
+            <view class='cl'></view>
+            
+  </view>
+   <view class="imgsContent {{showdetailInfo?'wxshow':'wxhide'}}">
+      <image wx:for="{{meetinginfo.imgs}}" wx:for-index="index" wx:for-item="item" src="item.img"></image>
+   </view>
+ 
+ 
+</view>
+
+
 <view class='rcontent'>
 <view  class='cl' style="height:10px;"></view>
   <view class='rowp nopd' style='padding:0;border:none;'>
@@ -30,7 +48,7 @@
         <text class='fr'>{{meetinginfo.active_time}}</text>
         <view class='cl'></view>
       </view>
-      <view class='time_detail'>活动费用<i bindtap="showNoticeMoney" class="icon iconfont icon-prompt"></i>
+      <view class='time_detail'>到场保证金<i bindtap="showNoticeMoney" class="icon iconfont icon-prompt"></i>
         <text class='fr'>{{meetinginfo.promise_money}}元</text>
         <view class='cl'></view>
       </view>
@@ -40,7 +58,7 @@
         <view class='cl'></view>
       </view>
       <view class='time_detail' style='border:none;'>地址
-        <text class='fr' bindtap='openmap' style=' color:#00C676;width:70%;'>{{meetinginfo.address}}</text>
+        <text class='fr' bindtap='openmap' style=' text-align:right; color:#003366; width:70%;'>{{meetinginfo.address}}</text>
         <view class='cl'></view>
       </view>
     </view>
@@ -70,8 +88,8 @@
   </view>
 
   <view class="mt_desc {{meetinginfo.join_status?'wxshow':'wxhide'}} ">
-    <label class='fl'>提醒 <i bindtap="showNotice" class="icon iconfont icon-prompt"></i></label>
-    <view class='fr m_mc'>
+    <label class='fl' style='color:#ea5f3a'>提醒 <i bindtap="showNotice" class="icon iconfont icon-prompt"></i></label>
+    <view class='fr m_mc'  style='color:#ea5f3a'>
       <!-- <view><i class="icon iconfont icon-coordinates_fill"></i>北京市昌平区</view> -->
       <picker mode="selector" bindchange="bindSeatChange" value="{{seatList[seatidx]}}" range-key="name" range="{{seatList}}">
 
@@ -107,7 +125,7 @@
 
 
     <form report-submit='true' bindsubmit='checkSign'>
-      <button class="actbtn actbtn_red {{optBtns.sign?'wxshow':'wxhide'}}" hover-class='tapbtn' plain="true" form-type='submit'>签到</button>
+      <button class="actbtn {{optBtns.sign?'wxshow':'wxhide'}}" hover-class='tapbtn' plain="true" form-type='submit'>签到</button>
     </form>
     <!-- <button class="actbtn actbtn_red {{optBtns.getMoney?'wxshow':'wxhide'}}" hover-class='tapbtn' plain="true" bindtap='goredbag'>领取红包</button> -->
     <form report-submit='true' bindsubmit='joinmeeting'>
@@ -121,8 +139,6 @@
       <button form-type='submit' class="actbtn actbtn_red {{optBtns.view?'wxshow':'wxhide'}}" hover-class='tapbtn'>查看</button>
     </form> -->
     <!-- <form report-submit='true' bindsubmit='confirmSign'>
-
-
       <button form-type='submit' plain="true" class="actbtn_cancle {{(meetinginfo.status == '0' && isconfirm && isstaring)?'wxshow':'wxhide'}}" hover-class='tapbtn'>关闭会议</button>
     </form> -->
 
@@ -160,7 +176,7 @@
     </view>
     <view class='fl'>
       <view class='joinsDesc'>
-        <view>{{item.nickname}}</view>
+        <view>{{item.name}}</view>
         <view>{{item.join_time}}</view>
       </view>
     </view>
@@ -182,112 +198,22 @@
 </view>
 
 
-<!-- <view class="joinperson_more {{memberlist.length == 0?'wxhide':'wxshow'}}">
-<form report-submit='true' bindsubmit='gomoreperson'>
-   <button style='border:none; font-size:14px;' plain='true' form-type='submit'>查看更多 </button>
-</form>
-</view> -->
 
-<!-- <view class='mdetail_content'> -->
-<!-- <view class='mt_desc'>
-            <label class='fl mt_filed'>已报名4/4人</label>
-            <label class='fr m_mc'>
-              <label class='time_act moreinfo'>
-                  <i class="icon iconfont icon-unfold"></i> 
-                  <i class="icon iconfont icon-unfold last"></i>
-              </label>  
-            </label>
-            <view class='cl'></view>
-  </view> -->
-
-<!-- <view class='mt_desc'>
-          <view class='fl mt_person_head'><image src='../../image/txdemo.jpg'></image></view>
-          <view class='fl mt_person_info'>
-            <view class="fname1">沈维然</view>
-            <view class="fname2">138-2111-2234</view>
-          </view>
-          <view class='fr mt_person_time'>
-             <view class='mt_state'>迟到了</view>
-            <view>2018-12-12 10:23</view>
-          </view>
-          <view class='cl'></view>
-  </view>
-
-  <view class='mt_desc'>
-          <view class='fl mt_person_head'>头像</view>
-          <view class='fl mt_person_info'>
-            <view class="fname1">沈维然</view>
-            <view class="fname2">138-2111-2234</view>
-          </view>
-          <view class='fr mt_person_time'>
-             <view class='mt_state'>签到成功</view>
-            <view>2018-12-12 10:23</view>
-          </view>
-          <view class='cl'></view>
-  </view>
-
-  <view class='mt_desc'>
-          <view class='fl mt_person_head'>头像</view>
-          <view class='fl mt_person_info'>
-            <view class="fname1">沈维然</view>
-            <view class="fname2">138-2111-2234</view>
-          </view>
-          <view class='fr mt_person_time'>
-             <view class='mt_state'>签到成功</view>
-            <view>2018-12-12 10:23</view>
-          </view>
-          <view class='cl'></view>
-  </view>
-
-  <view class='mt_desc'>
-          <view class='fl mt_person_head'>头像</view>
-          <view class='fl mt_person_info'>
-            <view class="fname1">沈维然</view>
-            <view class="fname2">138-2111-2234</view>
-          </view>
-          <view class='fr mt_person_time'>
-             <view class='mt_state'>迟到了</view>
-            <view>2018-12-12 10:23</view>
-          </view>
-          <view class='cl'></view>
-  </view> -->
-
-<!-- </view> -->
-
-<!-- <view class='mt_act_content'>
-   <view class="act_tips">发起人及报名人可见其联系方式</view>
-   <view class='act_m_btn acting_act'>
-      <view class="act_time">09:00 AM</view>
-      <view class="act_time_text">点击签到</view>
-   </view>
-
-   <view class='act_m_btn acting_dis'>
-      <view class="act_time">09:00 AM</view>
-      <view class="act_time_text">很遗憾，迟到了</view>
-   </view>
-
-   <view class='act_m_btn acting_sucess'>
-      <view class="act_time">09:00 AM</view>
-      <view class="act_time_text">签到成功</view>
-   </view>
-   
-</view>
-
-<view class='act_group'>
-      <view class='actbtn'>分享聚会</view>
-      <view class='actbtn'>我也要建</view>
-</view> -->
 
 
 <!-- 授权提示 -->
 <view class="authuser" wx:if="{{isauth}}">
   <view class='authuer_content'>
     <view class="detailAuth">
-      <view class='authTitle'>全民运动</view>
-      <view class='authmiaoshu'>欢迎使用全民运动,您这这里可以创建活动 或 参加好友的活动，点击马上开始开启运动旅程吧！</view>
+      <view class='authTitle'>[{{meetinginfo.userName}}] 发起了活动</view>
+      <view class='authmiaoshu'>
+         <view class='meetItem'><text>主题:</text>{{meetinginfo.title}}</view>
+         <view  class='meetItem'><text>时间:</text>{{meetinginfo.active_time}}</view>
+         <view  class='meetItem'><text>地点:</text>{{meetinginfo.adr_name}}</view>
+      </view>
 
       <view class='authBtn'>
-            <button style="border:none; color:#FFF;" class='' form-type='submit' plain='true' open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo'><image  class='start_icos' style='top:8px;' src='../../image/sport2.png'></image>马上开始</button>
+            <button style="border:none; color:#FFF;" class='' form-type='submit' plain='true' open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo'><image  class='start_icos' style='top:8px;' src='../../image/sport2.png'></image>马上看看</button>
       </view>
 
     </view>
@@ -332,3 +258,53 @@
 <!-- <form bindsubmit='gohome' report-submit='true'>
 <view  class='backhome'  plain='true' form-type='submit' hover-class='tapbtn'><button form-type='submit' style='position:absolute; opacity:0'>tijiao</button><i class="icon iconfont icon-homepage_fill"></i></view>
 </form> -->
+
+
+<view class="joinTips {{jointShow?'wxshow':'wxhide'}}">
+   <view class='joinTipContent'>
+      <view class='jtitle'>确认信息  <label bindtap='closejoin' class='closelabel'>关闭</label></view>
+      <view class='jcontent'>
+      
+<form bindsubmit='compeleMine'>
+<view class='fm_bg'>
+      <view class='mt_desc' style='border:none'>
+          <label class='fl col col-20 mt_filed mbottom'><i style="color:#000; font-size:20px;" class="icon iconfont icon-addressbook"></i> </label>
+          <label class='fr  col col-80 m_mc'>
+            <view class='t_right'>
+              <input name="mineName" value="{{mineName}}" class='m_mc_input' placeholder='请输入姓名'></input>
+            </view>
+          </label>
+          <view class='cl'></view>
+        </view>
+
+        <view class='mt_desc'>
+          <label class='fl  col col-20 mt_filed mbottom'><i style="color:#000;font-size:20px;" class="icon iconfont icon-mobilephone"></i> </label>
+          <label class='fr  col col-80 m_mc'>
+            <view class='t_right'>
+              <input name="minePhone" value="{{minePhone}}" class='m_mc_input' placeholder='请输入手机号'></input>
+            </view>
+          </label>
+          <view class='cl'></view>
+        </view>
+         </view>
+         <view class='paytips'>需要支付<text>{{meetinginfo.promise_money}}元</text>保证金确保您到场，保证金会在您签到后及时原路退回，不要忘记签到哦！</view>
+        
+        <view class="syxy" style='padding:0'>
+   
+    
+   <label  bindtap="xieyiact" ><i  class="icon iconfont  {{xieyi?'icon-success_fill':'icon-success'}} "></i>我已同意</label>
+    <navigator url='./xieyi'>
+    <text>软件使用协议</text>
+    </navigator>
+   
+   
+   </view>
+
+        <button  style='background:#ea5f3a; color:#FFF; margin-top:10px;' form-type='submit' class='compbtnPerson'>参加并支付</button>
+
+ </form>
+
+        
+      </view>
+   </view>
+</view>

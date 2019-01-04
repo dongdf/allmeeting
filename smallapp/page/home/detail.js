@@ -5,6 +5,9 @@ Page({
    * 页面的初始数据
    */
   data:{
+    showdetailInfo:false,
+    xieyi:true,
+    jointShow:false,
     isboxed:false,
     seatList: [
       { name: '10分钟前', value: 10 },
@@ -30,12 +33,38 @@ Page({
     optBtns: { optBtns:false}
 
   },
+  isshowInfo: function () {
+    if (this.data.showdetailInfo) {
+      this.setData({
+        showdetailInfo: false
+      })
+    } else {
+      this.setData({
+        showdetailInfo: true
+      })
+    }
+  },
+  xieyiact: function () {
+    if (this.data.xieyi) {
+      this.setData({
+        xieyi: false,
+      })
+    } else {
+      this.setData({
+        xieyi: true,
+      })
+    }
+  },
+  closejoin:function(){
+    this.setData({
+      jointShow:false
+    })
+  },
   bindSeatChange: function (e) {//剩余座位
     var idx = e.detail.value;
     var that = this;
     console.log(idx);
     var tempSeat = this.data.seatList[idx];
-
     var pdata={
       id: that.data.meetinginfo.id,
       notice: tempSeat.value
@@ -63,8 +92,8 @@ Page({
   showNoticeMoney:function(){
     wx.showModal({
       title: '提示',
-      content: '参加活动的收费标准',
-      showCancel:false,
+      content: '保证金是为了保证参会人员按时到场，到场签到后保证金原路返回',
+      showCancel: false
     })
   },
   switch1Change: function (e) {
@@ -194,7 +223,9 @@ Page({
   getmineInfo: function () {
     getApp().get('user/findUserInfo').then(res => {
       this.setData({
-        mineinfo: res
+        mineinfo: res,
+        mineName:res.name,
+        minePhone:res.mobile
       })
     })
 
@@ -284,61 +315,68 @@ Page({
     })
 
   },
-  joinmeeting:function(e){
-    getApp().post('index/fomrids', { formId: e.detail.formId });
-    if(!this.data.mineinfo.mobile){
-      this.setData({
-        mininshow: true
-      })
+  comJoin:function(){
+    getApp().post('member/add', { id: this.data.meetid }).then(res => {
+      var obj = JSON.parse(res);
+      var that = this;
+      console.log(obj);
 
-    }else{
+      wx.requestPayment({
+        timeStamp: obj.timeStamp,
+        nonceStr: obj.nonceStr,
+        package: obj.package,
+        signType: obj.signType,
+        paySign: obj.paySign,
+        success(res) {
+          getApp().get('member/changeStatus?id=' + that.data.meetinginfo.id).then(gres => {
+            wx.showModal({
+              title: '参加成功，请记得按时到场哦',
+              content: '您可以设置备忘提醒',
+              showCancel: false
+            })
 
-      getApp().post('member/add', { id: this.data.meetid }).then(res => {
-        var obj = JSON.parse(res);
-        var that = this;
-        console.log(obj);
+            that.getoptbtns();
+            that.getmeeting();
+            that.setData({
+              jointShow: false
+            })
 
-        wx.requestPayment({
-          timeStamp: obj.timeStamp,
-          nonceStr: obj.nonceStr,
-          package: obj.package,
-          signType: obj.signType,
-          paySign: obj.paySign,
-            success(res){
-              getApp().get('member/changeStatus?id=' + that.data.meetinginfo.id).then(gres => {
-
-                that.getoptbtns();
-
-              })
-             
-              getApp().globalData.meetId = that.data.meetinginfo.id
-              // if (that.data.meetinginfo.open_id == wx.getStorageSync('ppid')){
-               
-              //   wx.navigateTo({
-              //     url: './othersetting?isqunzhu=1',
-              //   })
-              // }else{
-              //   wx.navigateTo({
-              //     url: './othersetting?isqunzhu=1',
-              //   })
-              // }
-            },
-            fail(res) { 
-              console.log(res)
-              
-            }
           })
 
+          getApp().globalData.meetId = that.data.meetinginfo.id
+          // if (that.data.meetinginfo.open_id == wx.getStorageSync('ppid')){
 
-      },(error)=>{
-        wx.showModal({
-          title: '',
-          content: error.info,
-        })
+          //   wx.navigateTo({
+          //     url: './othersetting?isqunzhu=1',
+          //   })
+          // }else{
+          //   wx.navigateTo({
+          //     url: './othersetting?isqunzhu=1',
+          //   })
+          // }
+        },
+        fail(res) {
+          console.log(res)
+
+        }
       })
-      
-      
-    }
+
+
+    }, (error) => {
+      that.setData({
+        jointShow: false
+      })
+      wx.showModal({
+        title: '',
+        content: error.info,
+      })
+    })
+  },
+  joinmeeting:function(e){
+    getApp().post('index/fomrids', { formId: e.detail.formId });
+    this.setData({
+      jointShow: true
+    })
     
   },
   modifyMeeting:function(e){
@@ -347,42 +385,42 @@ Page({
     getApp().globalData.meetId = this.data.meetid
     if (this.data.meetinginfo.open_id  == wx.getStorageSync('ppid')){
       wx.showActionSheet({
-        itemList: ['修改信息','取消活动'],
+        itemList: ['取消活动'],
         success(res) {
           if(res.tapIndex == 0){
             
-            wx.redirectTo({
-              url: '../home/addmeeting',
-            })
-            // wx.showModal({
-            //   title: '确定取消活动吗？',
-            //   content: '取消活动，活动费用会在三个工作日内进行原路返回',
-            //   success: function (res) {
-            //     if (res.confirm) {
-            //       getApp().post('affair/cancelAffair', {
-            //         id: that.data.meetinginfo.id
-            //       }).then(res => {
-            //         wx.showModal({
-            //           title: '提示',
-            //           content: '取消成功',
-            //         })
-            //         that.getoptbtns();
-
-
-
-            //       }, error => {
-            //         wx.showModal({
-            //           title: '提示',
-            //           content: error.info,
-            //         })
-
-            //       })
-            //     } else if (res.cancel) {
-            //       console.log('用户点击取消')
-            //     }
-            //   }
-
+            // wx.redirectTo({
+            //   url: '../home/addmeeting',
             // })
+            wx.showModal({
+              title: '确定取消活动吗？',
+              content: '取消活动，活动保证金会在三个工作日内进行原路返回',
+              success: function (res) {
+                if (res.confirm) {
+                  getApp().post('affair/cancelAffair', {
+                    id: that.data.meetinginfo.id
+                  }).then(res => {
+                    wx.showModal({
+                      title: '提示',
+                      content: '取消成功',
+                    })
+                    that.getoptbtns();
+
+
+
+                  }, error => {
+                    wx.showModal({
+                      title: '提示',
+                      content: error.info,
+                    })
+
+                  })
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+
+            })
           } else if (res.tapIndex == 1){
             wx.showModal({
               title: '确定关闭红包？',
@@ -439,6 +477,23 @@ Page({
   },
   compeleMine: function (e) {
     getApp().post('index/fomrids', { formId: e.detail.formId });
+    
+    var that = this;
+    if (!that.data.xieyi) {
+      wx.showModal({
+        title: '提示',
+        content: '请先同意软件使用协议',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            that.setData({
+              xieyi: true
+            })
+          }
+        }
+      })
+      return false;
+    }
 
     if (!e.detail.value.mineName || !e.detail.value.minePhone) {
       wx.showToast({
@@ -452,14 +507,8 @@ Page({
         mobile: e.detail.value.minePhone
       }
       getApp().post('user/upUser', update).then(res => {
-        wx.showToast({
-          title: '保存成功',
-        })
-        this.getmineInfo();
-
-        this.setData({
-          mininshow: false
-        })
+        
+        this.comJoin();
 
 
       })
@@ -467,35 +516,6 @@ Page({
     }
 
   },
-  // getOpenid:function(){
-
-  //   wx.login({
-  //     success: function (res) {
-  //       if (res.code) {
-  //         console.log(res);
-           
-  //         //发起网络请求
-  //         getApp().get('login/getOpenIdByCode?code=' + res.code).then(opres => {
-  //           wx.setStorageSync('ppid', opres.openid);
-        
-  //         }, error => {
-  //           wx.hideLoading()
-  //           wx.showModal({
-  //             title: '提示',
-  //             content: JSON.stringify(error),
-  //           })
-  //         })
-  //       } else {
-  //         wx.hideLoading()
-  //         wx.showToast({
-  //           title: 'wxlogin获取code失败',
-  //         })
-  //       }
-  //     },
-
-  //   });
-
-  // },
   bindGetUserInfo: function (e) {
     
     
@@ -524,6 +544,7 @@ Page({
                 that.getmeeting();
                 that.getmeber();
                 that.getoptbtns();
+                that.getmineInfo();
               })
 
             }, error => {
@@ -595,6 +616,7 @@ Page({
 
 
     if(!wx.getStorageSync('ppid')){
+      this.getmeeting();
       this.setData({
         isauth:true
       })
@@ -633,7 +655,7 @@ Page({
       })
       if (res.status == 1){
         wx.redirectTo({
-          url: './latedetail?mid='+res.id,
+          url: '../home/latedetail?mid='+res.id,
         })
       }
       if (res.open_status == 0){
@@ -646,7 +668,7 @@ Page({
         })
       }
 
-      var curtime = new Date().getTime();
+      var curtime = new Date().getTime() - 3600000;
        
       var actTime = stemp;
       actTime = actTime.substring(0,19);

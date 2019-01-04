@@ -3,6 +3,8 @@
     
     "page/home/index",
     "page/home/detail",
+    "page/home/xieyi",
+    "page/home/latedetail",
     "page/home/joins",
     "page/home/confirms",
     "page/home/hblist",

@@ -111,6 +111,22 @@
         
 </view>
 
+<view class='wechat'>
+  <view class='rowsp'>
+     <view class='col col-50'>
+      <button open-type="feedback" style='font-size:14px; border:none;' plain='true'><i class="icon iconfont icon-brush"></i>意见反馈</button>
+
+     </view>
+     <view class='col col-50'>
+           <button open-type="contact" style='font-size:14px; border:none;' plain='true'><i class="icon iconfont icon-customerservice_fill"></i>在线客服</button>
+
+     </view>
+     <view class='cl'></view>
+  </view>
+   
+    
+</view>
+
 <view style='height:10px' class='cl'></view>
 
 

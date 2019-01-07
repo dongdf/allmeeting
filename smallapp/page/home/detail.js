@@ -329,32 +329,42 @@ Page({
         signType: obj.signType,
         paySign: obj.paySign,
         success(res) {
+          that.setData({
+            jointShow: false
+          })
+          wx.showModal({
+            title: '参加成功，请记得按时到场哦',
+            content: '您可以设置备忘提醒',
+            showCancel: false
+          })
+          that.getoptbtns();
+          that.getmeeting();
           getApp().get('member/changeStatus?id=' + that.data.meetinginfo.id).then(gres => {
-            wx.showModal({
-              title: '参加成功，请记得按时到场哦',
-              content: '您可以设置备忘提醒',
-              showCancel: false
-            })
+            // wx.showModal({
+            //   title: '参加成功，请记得按时到场哦',
+            //   content: '您可以设置备忘提醒',
+            //   showCancel: false
+            // })
 
-            that.getoptbtns();
-            that.getmeeting();
-            that.setData({
-              jointShow: false
-            })
+            // that.getoptbtns();
+            // that.getmeeting();
+            // that.setData({
+            //   jointShow: false
+            // })
 
+          },error=>{
+            // wx.showModal({
+            //   title: '参加成功，请记得按时到场哦',
+            //   content: '您可以设置备忘提醒',
+            //   showCancel: false
+            // })
+
+            // that.getoptbtns();
+            // that.getmeeting();
           })
 
           getApp().globalData.meetId = that.data.meetinginfo.id
-          // if (that.data.meetinginfo.open_id == wx.getStorageSync('ppid')){
-
-          //   wx.navigateTo({
-          //     url: './othersetting?isqunzhu=1',
-          //   })
-          // }else{
-          //   wx.navigateTo({
-          //     url: './othersetting?isqunzhu=1',
-          //   })
-          // }
+         
         },
         fail(res) {
           console.log(res)

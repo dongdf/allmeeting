@@ -90,6 +90,12 @@ App({
         }
 
       }
+      if (postData && postData.formId){
+        if (postData.formId == undefined || postData.formId == '' || postData.formId == null || postData.formId == 'undefined' || postData.formId =='the formId is a mock one'){
+          delete postData.formId;
+        }
+
+      }
       
       wx.request({
         url: baseUrl+url,

@@ -1226,3 +1226,10 @@ border-radius: 8px;
   font-weight: bold;
 }
 .xyconttent view .text {color:#ea5f3a}
+
+.wechat{
+   text-align: center;
+   border-top: 1px solid #EEE;
+   padding-top: 5px;
+   margin:0 10px;
+}

@@ -25,6 +25,9 @@
     "page/mine/moneyList"
     
   ],
+  "navigateToMiniProgramAppIdList": [
+    "wx48bff25082147225"
+  ],
   "window": {
     "navigationBarBackgroundColor": "#ea5f3a",
     "navigationBarTextStyle": "white",

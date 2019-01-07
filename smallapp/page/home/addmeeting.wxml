@@ -3,11 +3,11 @@
  <form bindsubmit="addmeetings" bindreset='resetmeeting' report-submit="true">
 <view class='rcontent'>
         <view class='mt_desc mt_title'>
-                <input name="title" value="{{title}}" placeholder='活动标题'></input>
+                <input name="title" value="{{title}}" placeholder='请输入活动标题，如老乡会，同学会'></input>
               </view>
 
                <view class="mt_desc {{!mineshow?'wxshow':'wxhide'}}">
-        <textarea  class='meeting_desc' name="content" value="{{content}}" style="height:100px;" placeholder='请输入活动描述 如一起打球'></textarea>
+        <textarea  class='meeting_desc' name="content" value="{{content}}" style="height:100px;" placeholder='请输入活动描述 '></textarea>
       </view>
       <!-- <view class='mt_desc'>
         <textarea class='meeting_desc' placeholder='违约规则（迟到，缺席者的惩罚）'></textarea>

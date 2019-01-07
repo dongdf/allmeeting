@@ -22,11 +22,7 @@ Page({
       })
     }
 
-    if (wx.getStorageSync('ppid')) {
-      wx.redirectTo({
-        url: '../home/index',
-      })
-    }
+    
 
   },
   addinva:function(){
@@ -107,6 +103,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (wx.getStorageSync('ppid')) {
+      wx.redirectTo({
+        url: '../home/index',
+      })
+    }
 
   },
 

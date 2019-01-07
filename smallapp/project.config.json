@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 17,
 			"list": [
 				{
 					"id": 0,
@@ -55,10 +55,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "home",
 					"pathName": "page/home/index",
-					"query": ""
+					"query": "popenid=12444"
 				},
 				{
 					"id": -1,
@@ -124,13 +124,19 @@
 					"id": 15,
 					"name": "detail",
 					"pathName": "page/home/detail",
-					"query": "mid=80"
+					"query": "mid=89"
 				},
 				{
 					"id": -1,
 					"name": "minePhone",
 					"pathName": "page/mine/minePhone",
 					"query": "mid=80"
+				},
+				{
+					"id": -1,
+					"name": "home",
+					"pathName": "page/home/xieyi",
+					"query": "popenid=12444"
 				}
 			]
 		}

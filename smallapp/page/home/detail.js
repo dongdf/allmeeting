@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data:{
+    meetingpic:[],
     showdetailInfo:false,
     xieyi:true,
     jointShow:false,
@@ -216,7 +217,7 @@ Page({
   showNotice: function () {
     wx.showModal({
       title: '提示',
-      content: '提醒说明',
+      content: '设置提醒，可以微信通知您及时参加会议和签到',
       showCancel: false
     })
   },
@@ -647,6 +648,12 @@ Page({
   getmeeting:function(){
     var that = this;
     getApp().get('affair/find?id='+this.data.meetid).then(res=>{
+
+
+      // that.setData({
+      //   meetingpic: JSON.parse(res.img_list)
+      // })
+
       var temp = new Date(res.active_time).getTime()
       var stemp = res.active_time;
       res.active_time = getApp().datetostring(res.active_time, 'yyyy-MM-dd ww hh:mm')

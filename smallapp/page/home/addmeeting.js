@@ -115,7 +115,7 @@ Page({
   showNotice: function () {
     wx.showModal({
       title: '提示',
-      content: '提醒说明',
+      content: '设置提醒，可以微信通知您及时参加会议和签到',
       showCancel: false
     })
   },
@@ -650,6 +650,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
+    wx.showModal({
+      title: '大象提醒',
+      content: '请勿发布色情、淫秽、政治信息等违反国家法律法规的内容',
+      showCancel:false,
+      confirmText:'同意',
+    })
     wx.setNavigationBarTitle({
       title: '创建',
     })

@@ -1,6 +1,6 @@
 {
   "pages": [
-    
+    "page/home/start",
     "page/home/index",
     "page/home/detail",
     "page/home/xieyi",
@@ -22,21 +22,13 @@
     "page/mine/unbindPhone",
     "page/mine/active",
     "page/mine/minekf",
-    "page/mine/moneyList",
-    "page/home/start"
-    
-     
+    "page/mine/moneyList"
     
   ],
   "window": {
     "navigationBarBackgroundColor": "#ea5f3a",
     "navigationBarTextStyle": "white",
-     
     "navigationBarTitleText": "大象聚会"
-     
-     
-    
-    
   },
   
   "networkTimeout": {

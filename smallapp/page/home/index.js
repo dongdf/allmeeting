@@ -6,6 +6,7 @@ const app = getApp()
 
 Page({
   data: {
+    parentopenid:'',
     tipsucess:false,
     hidepopShow:true,
     mymeeting:{my:0,other:0},
@@ -77,6 +78,7 @@ Page({
       })
     })
   },
+
   goadd: function(){
     getApp().globalData.meetingadd = true;
     getApp().globalData.meetId ='';
@@ -132,8 +134,13 @@ Page({
      })
 
   },
-  onLoad: function () {
-    
+  onLoad: function (option) {
+    if(option.popenid){
+      this.setData({
+        parentopenid:option.popenid
+      })
+
+    }
     // this.getalllist(2)
     this.getmineCount()
     let now = new Date();
@@ -147,17 +154,19 @@ Page({
     })
 
   },
+  onUnload: function () {
+
+  },
   onShow:function(){
     if (!wx.getStorageSync('ppid')) {
       wx.redirectTo({
-        url: '../home/start',
+        url: '../home/start?popenid=' + this.data.parentopenid,
       })
 
     } else {
       this.getcomming();
       this.getmineinfo();
-      // this.getalllist(0);
-      // this.getalllist(1);
+      
     }
     
   },
@@ -273,20 +282,27 @@ Page({
   onShareAppMessage: function (res) {
 
     var that = this;
+    var shareMan = wx.getStorageSync('ppid') ? wx.getStorageSync('ppid') : ''
     if (res.from === 'button') {
       // 来自页面内转发按钮
-      // console.log(res.target)
+      //  console.log(res.target)
+      getApp().post('share/add');
+      that.getmineinfo();
     }
     return {
-      title: '【'+that.data.mine.nickname+'】邀请您使用大象聚会',
-      path: '/page/home/start?popenid=' + wx.getStorageSync('ppid') ? wx.getStorageSync('ppid'):'',
-      imageUrl: '../../image/share.jpg',
-      success: function (res) {
+      title: '【'+that.data.mine.nickname+'】赠送您1分钱聚会保证金，点开看看吧！',
+      path: '/page/home/index?popenid=' + shareMan,
+       imageUrl: '../../image/share.jpg',
+      complete: function (res) {
+        wx.showModal({
+          title: 's',
+          content:JSON.stringify(res),
+        })
         console.log(res)
-        if (res.errMsg == 'shareAppMessage:ok') {
-          getApp().post('share/add');
-          console.log('分享回调')
-        }
+        // if (res.errMsg == 'shareAppMessage:ok') {
+        //   // getApp().post('share/add');
+        //   console.log('分享回调')
+        // }
         
       },
       fail: function (res) {

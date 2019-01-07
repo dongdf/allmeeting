@@ -442,7 +442,7 @@ page {
   padding:0px;
   border:none;
   text-align: center;
-  margin:10px 15px;
+  margin:10px 0px;
   font-size:18px;
 
 }
@@ -1210,5 +1210,19 @@ border-radius: 8px;
 .imgsContent image{
   display: block;
   clear: both;
+  position: relative;
   width:100%;
+  
+   
 }
+
+.xycontent{
+  padding:20px;
+}
+.xycontent view {
+  padding:5px 0;
+}
+.xycontent .xtitle {
+  font-weight: bold;
+}
+.xyconttent view .text {color:#ea5f3a}

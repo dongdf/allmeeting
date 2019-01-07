@@ -21,7 +21,7 @@
 <view class="mdetail_mine_content rcontent {{meetinginfo.imgs.length>0?'wxshow':'wxhide'}}" >
  
       <view class=' mine_item' bindtap='isshowInfo'>
-            <label class='fl mt_filed'>活动图片</label>
+            <label class='fl mt_filed'><i class="icon iconfont icon-picture"></i>活动图片</label>
             <view class='fr m_mc'>
                <view class='mine_right_arrow'><i style="transform:rotate(180deg);"  class="icon iconfont icon-unfold {{showdetailInfo?'wxshow':'wxhide'}}"></i><i class="icon iconfont icon-unfold {{showdetailInfo?'wxhide':'wxshow'}}"></i></view>
             </view>
@@ -29,7 +29,8 @@
             
   </view>
    <view class="imgsContent {{showdetailInfo?'wxshow':'wxhide'}}">
-      <image wx:for="{{meetinginfo.imgs}}" wx:for-index="index" wx:for-item="item" src="item.img"></image>
+   
+      <image wx:for="{{meetinginfo.imgs}}" mode="widthFix"  wx:for-index="index" wx:for-item="item" src="{{item.img}}"></image>
    </view>
  
  

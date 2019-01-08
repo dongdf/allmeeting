@@ -78,6 +78,18 @@ Page({
       })
     })
   },
+  gopro:function(e){
+    getApp().post('index/fomrids', { formId: e.detail.formId })
+    wx.navigateTo({
+      url: '../home/pro',
+    })
+  },
+  gopro2: function (e) {
+    getApp().post('index/fomrids', { formId: e.detail.formId })
+    wx.navigateTo({
+      url: '../home/pro',
+    })
+  },
 
   goadd: function(){
     getApp().globalData.meetingadd = true;

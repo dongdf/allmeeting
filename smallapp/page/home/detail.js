@@ -45,6 +45,12 @@ Page({
       })
     }
   },
+  gopro: function (e) {
+    getApp().post('index/fomrids', { formId: e.detail.formId })
+    wx.navigateTo({
+      url: '../home/pro',
+    })
+  },
   xieyiact: function () {
     if (this.data.xieyi) {
       this.setData({

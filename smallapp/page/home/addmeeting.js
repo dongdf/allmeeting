@@ -27,7 +27,7 @@ Page({
     title:'',
     promise_money:'',
     adr_name:'',
-    content:'',
+    content:'好久不见，聚聚吧！',
     showactiveTime:'',
     meeting:{
       imgs:[],
@@ -454,6 +454,12 @@ Page({
   },
   onLoad: function (options) {
     console.log(options);
+    wx.showModal({
+      title: '大象提醒',
+      content: '请勿发布色情、淫秽、政治信息等违反国家法律法规的内容',
+      showCancel: false,
+      confirmText: '同意',
+    })
     if(options.mid){
       // this.setData({
       //   modifyId:options.mid
@@ -472,8 +478,9 @@ Page({
     //   'meeting.quota': getApp().globalData.meetinginfo.quota
     // })
 
-    let afterday = 5;
+    let afterday = 60;
     let curDate = new Date();
+    let toady = new Date();
     let _this = this.data;
     // 补充0处理
     String.prototype.addzero = function () {
@@ -487,17 +494,25 @@ Page({
     var tempDateArray = [];
     for (var i = 0; i < afterday; i++) {
       if (i > 0) {
-        curDate.setDate(curDate.getDate() + 1);
+        
+          curDate.setDate(curDate.getDate() + 1);
+        
+        
       }
       var month = (curDate.getMonth() + 1).toString();
       var year = curDate.getFullYear();
       var day = curDate.getDate().toString() ;//+ "  周" + "日一二三四五六".charAt(curDate.getDay());
       var week = "  周" + "日一二三四五六".charAt(curDate.getDay());
       //console.log(year + "-" + month.addzero() + '-'+day.addzero());
-      tempDateArray.push({ name: month.addzero() + '月' + day.addzero() + week, value: year + "-" + month.addzero() + '-' + day.addzero() });
+      if (toady.getHours() > 22 && day == toady.getDate()){
+
+      }else{
+        tempDateArray.push({ name: month.addzero() + '月' + day.addzero() + week, value: year + "-" + month.addzero() + '-' + day.addzero() });
+
+      }
+     
+      
     }
-
-
 
     var tempHourArray = [];
     var tempMinArray = [];
@@ -506,8 +521,9 @@ Page({
       tempMinArray.push({ name: tempv.addzero() + '分', value: tempv.addzero() });
 
     }
+    
     for (var i = curDate.getHours() + 1; i < 24; i++) {
-      var tempv = i.toString()
+      var tempv = i.toString();
       tempHourArray.push({ name: tempv.addzero() + '时', value: tempv.addzero() });
     }
 
@@ -650,12 +666,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
-    wx.showModal({
-      title: '大象提醒',
-      content: '请勿发布色情、淫秽、政治信息等违反国家法律法规的内容',
-      showCancel:false,
-      confirmText:'同意',
-    })
+    
     wx.setNavigationBarTitle({
       title: '创建',
     })
@@ -690,7 +701,7 @@ Page({
 
     wx.chooseImage({
       count: 9,
-      sizeType: ['original', 'compressed'],
+      sizeType: ['compressed'],
       sourceType: ['album'],
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片

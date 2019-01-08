@@ -3,7 +3,7 @@
  <form bindsubmit="addmeetings" bindreset='resetmeeting' report-submit="true">
 <view class='rcontent'>
         <view class='mt_desc mt_title'>
-                <input name="title" value="{{title}}" placeholder='请输入活动标题，如老乡会，同学会'></input>
+                <input name="title" value="{{title}}" placeholder='请输入活动标题 如:老乡会 同学会 亲友会'></input>
               </view>
 
                <view class="mt_desc {{!mineshow?'wxshow':'wxhide'}}">
@@ -55,7 +55,7 @@
       </view>
 </view>
 
-<view class="serverMoney {{serverm?'wxshow':'wxhide'}}">保证金超过50元(包含)，不能准时赴约签到的人员，微信将扣除1%的手续费</view>
+<view class="serverMoney {{serverm?'wxshow':'wxhide'}}">保证金超过50元(包含)，不能准时赴约签到的人员，微信将扣除2%的手续费</view>
 
 <view class='rcontent'>
       <view class='mt_desc'>

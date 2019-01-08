@@ -1,6 +1,6 @@
 /* page/home/index.wxss */
 page{
-  padding-bottom:0px;
+   background: #EEE;
 
   
 }

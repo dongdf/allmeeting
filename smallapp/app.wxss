@@ -27,7 +27,7 @@ page {
   font-size: 30rpx;
   line-height: 1.6;
   color:#444; 
-  background: #ea5f3a no-repeat center ;
+  /* background: #ea5f3a no-repeat center ; */
   background-size: cover;
   padding-bottom: 95px;
  
@@ -37,7 +37,12 @@ page {
   position: relative;
   overflow: hidden;
 }
-
+.col_line{
+  position: absolute;
+  width:1px;
+  height:90%; top:5%;
+  background: #EAEAEA;
+}
 .col-3{
   width:33.33333%;
 }
@@ -471,14 +476,14 @@ page {
 .act_group .actbtn_share{
    
   padding:0px;
-  background: #FFF;
+
   border:none; 
   border-radius: 5px;
   color:#666;
   
   text-align: center;
   margin:5px 0;
-  font-size:18px;
+  font-size:16px;
 
 }
 
@@ -647,10 +652,10 @@ page {
 }
 .zhutis{
   position:relative;
-  font-size:17px;
+  font-size:18px;
   padding-right:100px;
   color:#000;
-  padding: 0 0 5px 0;
+  padding: 0 0 0px 0;
 }
 .zhutis .fmoneys{
   position: absolute;
@@ -659,14 +664,31 @@ page {
   font-size:12px;
 }
 
+.mtitle{
+  font-size:16px;
+   text-align: left;
+   color:#000;
+   font-weight: bold;
+  
+   padding:10px 10px 0 10px;
+  margin-top:15px;
+   
+}
+
 .rightarrow{
   position: absolute;
   top:10px;
   right:5px;
+  color:#666;
 }
 .rightarrow i{
-  font-weight: bold;
-  margin-left:10px;
+   
+  margin-left:0px;
+  font-weight: normal;
+  font-size:14px;
+}
+.rightarrow text{
+  font-size:12px;
 }
 
 .joinPersonhead{
@@ -816,11 +838,16 @@ page {
 }
 .rcontent_home{
   /* overflow: hidden; */
-   box-shadow: 0 0 5px #CC0000;
+  box-shadow: 1px 1px 3px 3px rgba(0, 0, 0,.1);
   border-radius: 6px;
+  
   margin:10px 10px;
    
   background: #FFF;
+}
+.newps{
+   margin:0 auto; border-radius:10px;
+  margin-top:-100rpx;
 }
 
 .hbdesc{
@@ -958,7 +985,7 @@ navigator{
    top:-40px;
 
 }
-.userinfos_img{width:70px;height:70px; padding:2px; box-shadow: 0 0 2px #CCC; margin:0 auto; overflow: hidden; background: #FFF; border-radius: 1000px;}
+.userinfos_img{width:50px;height:50px; padding:2px; box-shadow: 0 0 2px #CCC; margin:0 auto; overflow: hidden; background: #FFF; border-radius: 1000px;}
 .userinfos_img image{width:100%;height:100%;border-radius: 1000px; }
 
 .phoneSign{
@@ -968,8 +995,13 @@ navigator{
   top:3px;
   position: absolute;
 }
+.new_info{
+  padding:3px 0 0 10px;
+}
 .userinfo_name{
   position: relative;
+  font-size:18px;
+  font-weight: bold;
 }
 .wxinlineshow{
   display: inline-block
@@ -978,12 +1010,14 @@ navigator{
   text-align: center;
   color:#666;
   font-size:14px;
+  padding-bottom: 10px;
 }
 .offset_top{
   margin-top:-40px;
 }
-.spt1{ color:#ea5f3a; font-size:30px;}
+.spt1{  color:#ea5f3a; font-size:20px;}
 
+.spt2{ color:#000; font-size:14px;}
 .dot{ width:8px; height: 8px; background: #F60; border-radius: 10px; display:inline-block; margin-right:10px; }
 
 .start_icos{width:25px; height:30px; position: relative; top:6px;}
@@ -1229,7 +1263,29 @@ border-radius: 8px;
 
 .wechat{
    text-align: center;
-   border-top: 1px solid #EEE;
+   
    padding-top: 5px;
    margin:0 10px;
+   margin-top:-30px;
+    
+}
+.wechat button{
+  color:#666;
+}
+
+
+.homemineinfo{
+  background: #ea5f3a;
+  padding:30rpx;
+  padding-bottom:140rpx;
+  color:#FFF;
+}
+.gzbanner {margin:0 10px; position: relative;}
+.gzbanner image {width:100%; border-radius:8px; box-shadow: 0 0 3px #CCC;}
+.hdgz{
+  background: #FFF0CD;
+  color:#ea5f3a;
+  position: relative;
+  font-size: 14px;text-align: center;
+  padding:5px 0;
 }

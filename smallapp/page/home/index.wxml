@@ -1,40 +1,26 @@
-<!-- <view class='wrap'>
-	<view>
-		<view class='date-show'>
-			<view class='lt-arrow' bindtap='lastMonth'>
-      <i class="icon iconfont icon-return"></i>
-				<image src='../images/nextMonth.png' mode='aspectFit'></image>
-			</view>
-			{{year}}年{{month}}月
-			<view class='rt-arrow' bindtap='nextMonth'>
-			<i class="icon iconfont icon-enter"></i>
-			</view>
-		</view>
-	</view>
-	<view class='header'>
-		<view wx:for='{{date}}' class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>{{item}}<view></view></view>
-	</view>
-	<view class='date-box'>
-		<view wx:for='{{dateArr}}' class='{{isToday == item.isToday ? "nowDay" : ""}}' data-date='{{item.isToday}}'>			
-			<view class='date-head'>
-				<view bindtap='checkkDay' data-obj='{{item}}'>{{item.dateNum}}</view>
-			</view>
-			<view class='date-weight'>{{item.weight}}</view>
-		</view>
-	</view>
-</view> -->
-<view class='topimg'><image src='../../image/top_bg.png'></image></view>
- <view class='rcontent_home' style='margin-top:100rpx;'>
-   <view class='userinfos'>
-        <view class='userinfos_img'><image src='{{mine.avatarurl}}'></image></view>
-        <view class='userinfo_name'>{{mine.name?mine.name:mine.nickname}}
-        <label bindtap='bindPhone' class="{{!mine.mobile?'wxinlineshow':'wxhide'}}"><image class='phoneSign' src='../../image/sport4_0.png'></image></label>
-        <label bindtap='bindPhone' class="{{mine.mobile?'wxinlineshow':'wxhide'}}"><image class='phoneSign' src='../../image/sport4_1.png'></image></label>
-        </view>
-   </view>
 
-   <view class='rowp offset_top nopd' >
-        <view class='col col-50'>
+<!-- <view class='topimg'><image src='../../image/top_bg.png'></image></view> -->
+<view class='homemineinfo'>
+      <view class='userinfos_img fl'><image src='{{mine.avatarurl}}'></image></view>
+      <view class='new_info fl'>
+        <view class='userinfo_name'>Hi {{mine.name?mine.name:mine.nickname}} 聚一起更快乐！
+       
+        </view>
+        <view>
+        <text bindtap='bindPhone' >{{mine.mobile?mine.mobile:'点击完善手机号，方便联系您'}}</text>
+          <!-- <label bindtap='bindPhone' class="{{!mine.mobile?'wxinlineshow':'wxhide'}}"><image class='phoneSign' src='../../image/sport4_0.png'></image></label>
+          <label bindtap='bindPhone' class="{{mine.mobile?'wxinlineshow':'wxhide'}}"><image class='phoneSign' src='../../image/sport4_1.png'></image></label>  -->
+        </view>
+              
+      </view>
+      <view class='cl'></view>
+</view>
+<view class='cl'></view>
+<view class='rcontent_home'>
+
+<view class='rowp  nopd newps' style='border:none; padding:15px 0;'  >
+<view class='cl' style='height:5px;'></view>
+        <view class='col col-33'>
           <view  class="sp_mine" data-tabidx="1" bindtap='gomyMeeting'>
            
               <view class='spt1'>{{mymeeting.my}}</view>
@@ -43,7 +29,8 @@
              
           </view>
         </view>
-        <view class='col col-50'>
+        <view class='col col-33'>
+        <view class='col_line'></view>
           <view  class="sp_mine" data-tabidx="2"  bindtap='gomyMeeting'>
            
              <view class='spt1'>{{mymeeting.other}}</view>
@@ -51,17 +38,38 @@
             
           </view>
         </view>
+        <view class='col col-33'>
+        <view class='col_line'></view>
+         
+         <form report-submit='true' bindsubmit ="gopro"> 
+          <view  class="sp_mine" data-tabidx="2"  bindtap=''>
+           
+             <view class='spt1'><label><i style="font-size:20px;  " class="icon iconfont icon-feedback_fill"></i></label></view>
+             <view class='spt2'>玩法说明</view>
+             <button style='position:absolute;opacity:0; top:0;left:0;width:100%; height:100%;' form-type='submit'>sdds</button>
+          </view>
+          </form>
+          
+        </view>
         <view class='cl'></view>
    
    </view>
 
-<view style='min-height:200px'>
+</view>
+
+ <view class='rcontent'>
+
+   <view class="mtitle">正在进行</view>
+
+<view style='min-height:200px; '  >
+
   <view   wx:for="{{lists.ing}}" wx:for-index="index" wx:for-item="item">
     <navigator wx:if="{{index ==0}}" url='../home/detail?mid={{item.id}}'>
-          <view class='rowp nopd' style='padding-left:15px;padding-right:15px;'>
+          <view class='rowp nopd' style='padding-left:0px; border:none; padding-right:0px;'>
             <view class='col col-100'>
-                <view class='zhutis'>
-                   <label class='dot'></label>{{item.title}}
+                <view class='zhutis' style='font-size:15px; color:#08F;'>
+                   <!-- <label class='dot'></label> -->
+                   {{item.title}}
                   <label class='fmoneys'>保证金{{item.promise_money}}元</label>
                 </view>
               <view class='time_ss'>{{item.active_time}}</view>
@@ -74,10 +82,10 @@
     
     
     <navigator wx:if="{{index>0}}" url='../home/detail?mid={{item.id}}'>
-          <view class='rowp nopd' style='padding-left:15px;padding-right:15px;'>
+          <view class='rowp nopd' style='padding-left:0px; border:none;  padding-right:0px;'>
             <view class='col col-100'>
-                <view class='zhutis'>
-                  <label class='dot' style='background:#00C676'></label>{{item.title}}
+                <view class='zhutis' style='font-size:15px; color:#08F;'>
+                   {{item.title}}
                    
                 </view>
                 <label class="rightarrow" style='top:3px;'><text>{{item.active_time}}</text><i class="icon iconfont icon-enter"></i></label>
@@ -102,9 +110,37 @@
 
 
 
- <view class='act_group'>
- <view class="btntips_c {{mine.free_count>0?'wxshow':'wxhide'}}"><label>您有{{mine.free_count}}次一分钱创建活动的机会</label><image src='../../image/tips_home.png'></image></view>
-       <form report-submit='true' bindsubmit='goaddmeeting'><button hover-class='tapbtn' class='actbtn actbtn_sport' plain="true" form-type='submit'><i style="font-weight:bold;" class="icon iconfont icon-add"></i>创建活动</button></form>
+
+<view class='commfixedBottom'>
+    <view class='act_group'>
+    <view class="btntips_c {{mine.free_count>0?'wxshow':'wxhide'}}"><label>您有{{mine.free_count}}次一分钱创建活动的机会</label><image src='../../image/tips_home.png'></image></view>
+          <form report-submit='true' bindsubmit='goaddmeeting'><button hover-class='tapbtn' class='actbtn actbtn_sport' plain="true" form-type='submit'><i style="font-weight:bold;" class="icon iconfont icon-add"></i>创建活动</button></form>
+          <!-- <button hover-class='tapbtn' class=' actbtn_share'  open-type="share" plain="true" ><image class='start_icos' style='width:25px; height:20px; top:2px; margin-right:5px;' src='../../image/sport3.png'></image>分享给好友<text class='sharet'>免费获取一分钱聚会保证金</text></button> -->
+      
+          <!-- <form report-submit='true' bindsubmit='gomine'><button hover-class='tapbtn' class=' actbtn_cancle' plain="true" form-type='submit' >我</button></form>  -->
+            
+    </view>
+</view>
+
+
+
+<view style='height:10px' class='cl'></view>
+
+
+
+ </view>
+
+<view>
+
+<view class='gzbanner'>
+<form report-submit='true' bindsubmit ="gopro2"> 
+  <image src='../../image/gz_banner.jpg'  mode="widthFix"></image>
+  <button style='position:absolute;opacity:0; top:0;left:0;width:100%; height:100%;' form-type='submit'>sdds</button>
+  </form>
+</view>
+ <view class='act_group' style='margin:0;'>
+ <!-- <view class="btntips_c {{mine.free_count>0?'wxshow':'wxhide'}}"><label>您有{{mine.free_count}}次一分钱创建活动的机会</label><image src='../../image/tips_home.png'></image></view> -->
+       <!-- <form report-submit='true' bindsubmit='goaddmeeting'><button hover-class='tapbtn' class='actbtn actbtn_sport' plain="true" form-type='submit'><i style="font-weight:bold;" class="icon iconfont icon-add"></i>创建活动</button></form> -->
        <button hover-class='tapbtn' class=' actbtn_share'  open-type="share" plain="true" ><image class='start_icos' style='width:25px; height:20px; top:2px; margin-right:5px;' src='../../image/sport3.png'></image>分享给好友<text class='sharet'>免费获取一分钱聚会保证金</text></button>
    
        <!-- <form report-submit='true' bindsubmit='gomine'><button hover-class='tapbtn' class=' actbtn_cancle' plain="true" form-type='submit' >我</button></form>  -->
@@ -127,14 +163,8 @@
     
 </view>
 
-<view style='height:10px' class='cl'></view>
 
-
-
- </view>
-
-<view>
-<view class='cmmtitle'  wx:if="{{lists.ing.length>0}}"></view>
+<view class='cmmtitle wxhide'  wx:if="{{lists.ing.length>0}}"></view>
 <!-- 即将开始 -->
     <!-- <view  wx:for="{{lists.ing}}" wx:for-index="index" wx:for-item="item" class='rcontent'>
     <navigator wx:if="{{index ==0}}" url='../home/detail?mid={{item.id}}'>

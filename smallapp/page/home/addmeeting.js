@@ -465,7 +465,7 @@ Page({
     })
   },
   onLoad: function (options) {
-    console.log(options);
+     
     wx.showModal({
       title: '大象提醒',
       content: '请勿发布色情、淫秽、政治信息等违反国家法律法规的内容',
@@ -481,9 +481,11 @@ Page({
       // this.onLoad()
     }
     var idx = this.data.pmoneyIdx;
-    this.setData({
-      'meeting.promise_money': this.data.pmoneyList[idx].value
-    })
+    // this.setData({
+    //   'meeting.promise_money': this.data.pmoneyList[idx].value
+    // })
+
+    this.getmineInfo();
 
     // this.setData({
     //   'meeting.close_time': getApp().globalData.meetinginfo.close_time,
@@ -693,28 +695,22 @@ Page({
     wx.setNavigationBarTitle({
       title: '创建',
     })
-    // console.log(e);
-    this.setData({
-      'meeting.close_time': getApp().globalData.meetinginfo.close_time,
-      'meeting.close_datetime': getApp().globalData.meetinginfo.close_datetime
-      // 'meeting.quota': getApp().globalData.meetinginfo.quota
-    })
-    // this.onLoad();
-    // console.log(getApp().globalData.meetinginfo);
-    this.getmineInfo()
+     
+    // this.setData({
+    //   'meeting.close_time': getApp().globalData.meetinginfo.close_time,
+    //   'meeting.close_datetime': getApp().globalData.meetinginfo.close_datetime
+       
+    // })
+    
+    // this.getmineInfo()
 
-    if (getApp().globalData.meetId){
-      this.setData({
-        modifyId: getApp().globalData.meetId
-
-      })
-      // console.log(this.data.modifyId)
-      this.getmeetInfo();
-    }
-    // if (getApp().globalData.meetingadd){
+    // if (getApp().globalData.meetId){
     //   this.setData({
-    //     meeting:{}
+    //     modifyId: getApp().globalData.meetId
+
     //   })
+       
+    //   this.getmeetInfo();
     // }
     
 
@@ -793,7 +789,12 @@ Page({
       if (res.free_count<=0){
         temps.splice(0,1);
         this.setData({
-          pmoneyList: temps
+          pmoneyList: temps,
+          'meeting.promise_money':temps[0].value
+        })
+      }else{
+        this.setData({
+          'meeting.promise_money': temps[0].value
         })
       }
       this.setData({

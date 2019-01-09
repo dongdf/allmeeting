@@ -176,6 +176,7 @@ Page({
       })
 
     } else {
+      this.getmineCount()
       this.getcomming();
       this.getmineinfo();
       

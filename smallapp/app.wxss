@@ -668,7 +668,7 @@ page {
   font-size:16px;
    text-align: left;
    color:#000;
-   font-weight: bold;
+    
   
    padding:10px 10px 0 10px;
   margin-top:15px;
@@ -1000,8 +1000,8 @@ navigator{
 }
 .userinfo_name{
   position: relative;
-  font-size:18px;
-  font-weight: bold;
+  font-size:16px;
+   
 }
 .wxinlineshow{
   display: inline-block
@@ -1288,4 +1288,11 @@ border-radius: 8px;
   position: relative;
   font-size: 14px;text-align: center;
   padding:5px 0;
+}
+.ovName{
+  width:500rpx;
+  display:inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

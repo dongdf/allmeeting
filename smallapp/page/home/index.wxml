@@ -3,13 +3,14 @@
 <view class='homemineinfo'>
       <view class='userinfos_img fl'><image src='{{mine.avatarurl}}'></image></view>
       <view class='new_info fl'>
-        <view class='userinfo_name'>Hi {{mine.name?mine.name:mine.nickname}} 聚一起更快乐！
+        <view class='userinfo_name'><label class='ovName'>Hi {{mine.name?mine.name:mine.nickname}} 聚一起更快乐！</label> 
        
         </view>
-        <view>
-        <text bindtap='bindPhone' >{{mine.mobile?mine.mobile:'点击完善手机号，方便联系您'}}</text>
-          <!-- <label bindtap='bindPhone' class="{{!mine.mobile?'wxinlineshow':'wxhide'}}"><image class='phoneSign' src='../../image/sport4_0.png'></image></label>
-          <label bindtap='bindPhone' class="{{mine.mobile?'wxinlineshow':'wxhide'}}"><image class='phoneSign' src='../../image/sport4_1.png'></image></label>  -->
+        <view >
+          <label bindtap='bindPhone'>
+          手机: {{mine.mobile?mine.mobile:'点击完善手机号，方便联系您'}}<i class="icon iconfont icon-brush_fill"></i>
+          </label>
+          
         </view>
               
       </view>
@@ -23,7 +24,7 @@
         <view class='col col-33'>
           <view  class="sp_mine" data-tabidx="1" bindtap='gomyMeeting'>
            
-              <view class='spt1'>{{mymeeting.my}}</view>
+              <view class='spt1'>{{mymeeting.my}}<text style='font-size:12px; color:#999;'>次</text></view>
              <view class='spt2'>我创建的</view>
           
              
@@ -33,7 +34,7 @@
         <view class='col_line'></view>
           <view  class="sp_mine" data-tabidx="2"  bindtap='gomyMeeting'>
            
-             <view class='spt1'>{{mymeeting.other}}</view>
+             <view class='spt1'>{{mymeeting.other}}<text style='font-size:12px; color:#999;'>次</text></view>
              <view class='spt2'>我报名的</view>
             
           </view>

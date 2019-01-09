@@ -521,8 +521,13 @@ Page({
       tempMinArray.push({ name: tempv.addzero() + '分', value: tempv.addzero() });
 
     }
-    
-    for (var i = curDate.getHours() + 1; i < 24; i++) {
+    var curi;
+    if (toady.getHours() > 22){
+      curi = 0
+    }else{
+      curi = curDate.getHours() + 1
+    }
+    for (var i = curi; i < 24; i++) {
       var tempv = i.toString();
       tempHourArray.push({ name: tempv.addzero() + '时', value: tempv.addzero() });
     }
@@ -636,7 +641,13 @@ Page({
     if (e.detail.column == 0) {
       if (e.detail.value == 0) {
         let curDate = new Date();
-        for (var i = curDate.getHours() + 1; i < 24; i++) {
+        var curi ;
+        if (curDate.getHours()>22){
+          curi = 0;
+        }else{
+          curi = curDate.getHours() + 1;
+        }
+        for (var i = curi; i < 24; i++) {
           var tempv = i.toString()
           tempHourArray.push({ name: tempv.addzero() + '时', value: tempv.addzero() });
         }
@@ -731,10 +742,16 @@ Page({
           user: 'test'
         },
         fail: (res) => {
-         
+          // up();
         },
         complete: function (complete) {
-          console.log(complete.data);
+
+          var temp = JSON.stringify(complete.data);
+          if (temp.indexOf('400 Bad Request') >= 0) {
+            up();
+            return;
+          }
+          // console.log(complete.data);
           var orgimg = JSON.parse(complete.data);
           console.log(orgimg.data);
           showtemp.push({img: orgimg.data });

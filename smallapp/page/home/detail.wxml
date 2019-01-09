@@ -116,7 +116,7 @@
 
 
 <!-- 设置提醒 -->
-<view class='commfixedBottom'>
+<view class="commfixedBottom {{meetinginfo.title?'wxshow':'wxhide'}}">
   <view class='act_group'>
     <button class="actbtn actbtn_red  {{meetinginfo.join_status?'wxshow':'wxhide'}}" hover-class='tapbtn' plain="true" open-type="share">邀请朋友参加</button>
     <form report-submit='true' bindsubmit='modifyMeeting'>
@@ -130,7 +130,7 @@
       <button class="actbtn {{optBtns.sign?'wxshow':'wxhide'}}" hover-class='tapbtn' plain="true" form-type='submit'>签到</button>
     </form>
     <!-- <button class="actbtn actbtn_red {{optBtns.getMoney?'wxshow':'wxhide'}}" hover-class='tapbtn' plain="true" bindtap='goredbag'>领取红包</button> -->
-    <form report-submit='true' bindsubmit='joinmeeting'>
+    <form report-submit='true' bindsubmit='joinmeeting' >
       <button class="actbtn actbtn_orange {{(optBtns.join || zfsign)?'wxshow':'wxhide'}}" hover-class='tapbtn' plain="true" form-type='submit'>
         <text class="{{myopenid == meetinginfo.open_id?'wxshow':'wxhide'}}">发起活动</text>
         <text class="{{myopenid != meetinginfo.open_id?'wxshow':'wxhide'}}">参与活动</text>

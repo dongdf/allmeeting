@@ -263,6 +263,7 @@ Page({
         }).then(res=>{
           wx.hideLoading()
           that.getoptbtns();
+          that.getmeber();
           wx.showToast({
             title: '签到成功',
           })
@@ -323,10 +324,14 @@ Page({
 
   },
   comJoin:function(){
+    wx.showLoading({
+      title: '请稍后',
+    })
     getApp().post('member/add', { id: this.data.meetid }).then(res => {
       var obj = JSON.parse(res);
       var that = this;
       console.log(obj);
+     
 
       wx.requestPayment({
         timeStamp: obj.timeStamp,
@@ -338,41 +343,34 @@ Page({
           that.setData({
             jointShow: false
           })
-          wx.showModal({
-            title: '参加成功，请记得按时到场哦',
-            content: '您可以设置备忘提醒',
-            showCancel: false
-          })
-          that.getoptbtns();
-          that.getmeeting();
+          wx.hideLoading();
+          
           getApp().get('member/changeStatus?id=' + that.data.meetinginfo.id).then(gres => {
-            // wx.showModal({
-            //   title: '参加成功，请记得按时到场哦',
-            //   content: '您可以设置备忘提醒',
-            //   showCancel: false
-            // })
-
-            // that.getoptbtns();
-            // that.getmeeting();
-            // that.setData({
-            //   jointShow: false
-            // })
+            wx.showModal({
+              title: '参加成功，请记得按时到场哦',
+              content: '您可以设置备忘提醒',
+              showCancel: false
+            })
+            that.getoptbtns();
+            that.getmeeting();
+            that.getmeber();
 
           },error=>{
-            // wx.showModal({
-            //   title: '参加成功，请记得按时到场哦',
-            //   content: '您可以设置备忘提醒',
-            //   showCancel: false
-            // })
-
-            // that.getoptbtns();
-            // that.getmeeting();
+            wx.showModal({
+              title: '参加成功，请记得按时到场哦',
+              content: '您可以设置备忘提醒',
+              showCancel: false
+            })
+            that.getoptbtns();
+            that.getmeeting();
+            that.getmeber();
           })
 
           getApp().globalData.meetId = that.data.meetinginfo.id
          
         },
         fail(res) {
+          wx.hideLoading();
           console.log(res)
 
         }
@@ -380,6 +378,7 @@ Page({
 
 
     }, (error) => {
+      wx.hideLoading();
       that.setData({
         jointShow: false
       })
@@ -411,9 +410,12 @@ Page({
             // })
             wx.showModal({
               title: '确定取消活动吗？',
-              content: '取消活动，活动保证金会在三个工作日内进行原路返回',
+              content: '取消活动保证金会在三个工作日内进行原路返回 微信将扣除2%的手续费',
               success: function (res) {
                 if (res.confirm) {
+                  wx.showLoading({
+                    title: '请稍后...',
+                  })
                   getApp().post('affair/cancelAffair', {
                     id: that.data.meetinginfo.id
                   }).then(res => {
@@ -421,11 +423,13 @@ Page({
                       title: '提示',
                       content: '取消成功',
                     })
+                    wx.hideLoading();
                     that.getoptbtns();
 
 
 
                   }, error => {
+                    wx.hideLoading();
                     wx.showModal({
                       title: '提示',
                       content: error.info,
@@ -676,7 +680,7 @@ Page({
       this.setData({
         meetinginfo:res
       })
-      if (res.status == 1){
+      if (res.status == 1 || res.status == 3){
         wx.redirectTo({
           url: '../home/latedetail?mid='+res.id,
         })
@@ -754,6 +758,7 @@ Page({
   onShow: function () {
     getApp().globalData.allperson = []
     this.getmeber();
+    this.getmeeting();
     this.getoptbtns();
 
   },
@@ -792,14 +797,25 @@ Page({
   onShareAppMessage: function (res) {
 
     var  that = this;
+    var txt = JSON.stringify(that.data.mineinfo);
+    var picRandom =[
+      '../../image/mt0.jpg',
+      '../../image/mt1.jpg',
+      '../../image/mt2.jpg',
+      '../../image/mt3.jpg',
+      '../../image/mt4.jpg',
+      '../../image/mt5.jpg',
+      '../../image/mt6.jpg'
+    ]
+    var idx = parseInt(Math.random() * 6) + 1
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
     }
     return {
-      title:that.data.meetinginfo.title,
+      title: '【'+that.data.mineinfo.name+'】邀请你参加 '+that.data.meetinginfo.title,
       path: '/page/home/detail?mid=' + that.data.meetinginfo.id,
-      imageUrl:'',
+      imageUrl:picRandom[idx-1],
       success: function (res) {
         // 转发成功
         console.log(res);

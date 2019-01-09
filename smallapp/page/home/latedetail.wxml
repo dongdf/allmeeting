@@ -99,15 +99,15 @@
     <view class='fl'>
       <view class='joinsDesc'>
         <view>{{item.name}}</view>
-        <view>{{item.join_time}}</view>
+        <view>{{item.promise_money }} | {{item.join_time}}</view>
       </view>
     </view>
     <view class='cl'></view>
-    <label class="joinState {{item.join_status != 2?'wxshow':'wxhide'}}">
+    <label class="joinState {{item.pay_type == 1?'wxshow':'wxhide'}}">
       <text>已缴费</text>
     </label>
-    <label class="joinState {{item.join_status == 2?'wxshow':'wxhide'}}" style=' box-shadow: 0px 0px 0px 6px #F14E21 inset;'>
-      <text>已签到</text>
+    <label class="joinState {{item.pay_type == 2?'wxshow':'wxhide'}}" style=' box-shadow: 0px 0px 0px 6px #F14E21 inset;'>
+      <text>已退款</text>
     </label>
   </view>
 

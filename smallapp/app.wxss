@@ -74,6 +74,9 @@ page {
 .col-20{
   width:20%;
 }
+.col-80{
+  width:80%;
+}
 .col-15{
   width:15%;
 }
@@ -82,6 +85,10 @@ page {
   border-bottom: 1px solid #EEE;
   margin:0px 0;
   background: #FFF;
+  
+}
+.rowpre{
+  position: relative;
 }
 .rowno{
   background: none;
@@ -1015,8 +1022,8 @@ navigator{
 .offset_top{
   margin-top:-40px;
 }
-.spt1{  color:#ea5f3a; font-size:20px;}
-
+.spt1{  color:#ea5f3a; font-size:20px; overflow: hidden;height:70rpx;}
+.spt1 .icon{position: relative;top:-10rpx;}
 .spt2{ color:#000; font-size:14px;}
 .dot{ width:8px; height: 8px; background: #F60; border-radius: 10px; display:inline-block; margin-right:10px; }
 
@@ -1295,4 +1302,63 @@ border-radius: 8px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.gnamelist{
+  
+}
+.game_pic{width:120rpx;height:120rpx;}
+.game_pic image{width:100%; height: 100%; border-radius: 8px;}
+.gameShow{
+   position: fixed;
+   top:0;left:0;
+   width:100%;height:100%;
+   background: rgba(0,0,0,.5);
+   z-index: 9999;
+
+}
+.gameTitle {font-size:14px; font-weight: bold; padding-top:10rpx;}
+.gamedesc {
+  color:#999;font-size:12px;
+  padding-right:150rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gameOpen{
+  position: absolute;
+  right:40rpx;
+  font-size:25rpx;
+  border-radius: 4px;
+  border:1px solid #ea5f3a;
+  color:#ea5f3a;
+  padding:10rpx 25rpx;
+  top:40rpx;
+}
+.gamemapic{
+  width:500rpx;
+  height:565rpx;
+  margin:0 auto;
+  position: relative;
+  background: #FFF;
+  border-radius: 5px;
+  top:20%;
+  
+}
+.gamemapic_tip{
+  font-size:14px; text-align: center;
+  padding:20rpx;
+  position: relative;
+}
+.gamemapic_tip .gameclose{
+  position: absolute;
+  color:#ea5f3a;
+  top:25rpx;
+  right:20rpx;
+  font-size:12px;
+}
+.gameMa{text-align: center;}
+.gameMa image{
+  width:460rpx;
+  height:460rpx;
+  margin:0 auto;
 }

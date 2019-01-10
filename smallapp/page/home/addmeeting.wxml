@@ -7,7 +7,7 @@
               </view>
 
                <view class="mt_desc {{!mineshow?'wxshow':'wxhide'}}">
-        <textarea  class='meeting_desc' name="content" value="{{content}}" style="height:100px;" placeholder='请输入活动描述 '></textarea>
+        <textarea  class='meeting_desc' maxlength='-1' name="content" value="{{content}}" style="height:100px;" placeholder='请输入活动描述 '></textarea>
       </view>
       <!-- <view class='mt_desc'>
         <textarea class='meeting_desc' placeholder='违约规则（迟到，缺席者的惩罚）'></textarea>

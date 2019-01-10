@@ -1,0 +1,39 @@
+<!--page/home/game.wxml-->
+<view class='hdgz'><form report-submit='true'> <i class="icon iconfont icon-emoji"></i>点击打开长按识别小程序码即可玩耍！<button style='position:absolute;opacity:0; top:0;left:0;width:100%; height:100%;' form-type='submit'>sdds</button></form></view>
+<view class='gameList'>
+   
+
+   <view class='rowp rowpre'   wx:for="{{gamelist}}" data-idx='{{index}}' wx:for-index="index" wx:for-item="item"  bindtap='showmas'>
+     <view class='col col-20'>
+        <view class='game_pic'>
+           <image src='{{item.img}}' mode='wiwidthFix'></image>
+  
+        </view>
+     </view>
+     <view class='col col-80'>
+        <view class='gameItem'>  
+          <view class='gameTitle'>{{item.name}}</view>
+          <view class='gamedesc'>{{item.desc}}</view>
+
+        </view>
+     </view>
+     <label class='gameOpen'>打开</label>
+     <view class='cl'></view>
+   </view>
+
+ 
+
+
+    
+
+   
+</view>
+
+<view class="gameShow {{mashow?'wxshow':'wxhide'}}">
+    <view class='gamemapic'>
+        <view class='gamemapic_tip'>长按识别小程序码进入游戏<label class='gameclose' bindtap='closeshowmas'>关闭</label></view>
+        <view class='gameMa'>
+           <image src='{{curMa}}'></image>
+        </view>
+    </view>
+</view>

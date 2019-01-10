@@ -78,6 +78,12 @@ Page({
       })
     })
   },
+  gogame:function(e){
+    getApp().post('index/fomrids', { formId: e.detail.formId })
+    wx.navigateTo({
+      url: '../home/game',
+    })
+  },
   gopro:function(e){
     getApp().post('index/fomrids', { formId: e.detail.formId })
     wx.navigateTo({

@@ -21,7 +21,7 @@
 
 <view class='rowp  nopd newps' style='border:none; padding:15px 0;'  >
 <view class='cl' style='height:5px;'></view>
-        <view class='col col-33'>
+        <view class='col col-25'>
           <view  class="sp_mine" data-tabidx="1" bindtap='gomyMeeting'>
            
               <view class='spt1'>{{mymeeting.my}}<text style='font-size:12px; color:#999;'>次</text></view>
@@ -30,7 +30,7 @@
              
           </view>
         </view>
-        <view class='col col-33'>
+        <view class='col col-25'>
         <view class='col_line'></view>
           <view  class="sp_mine" data-tabidx="2"  bindtap='gomyMeeting'>
            
@@ -39,19 +39,35 @@
             
           </view>
         </view>
-        <view class='col col-33'>
+        <view class='col col-25'>
         <view class='col_line'></view>
          
          <form report-submit='true' bindsubmit ="gopro"> 
           <view  class="sp_mine" data-tabidx="2"  bindtap=''>
            
-             <view class='spt1'><label><i style="font-size:20px;  " class="icon iconfont icon-feedback_fill"></i></label></view>
+             <view class='spt1'><label><i style="font-size:30px;  " class="icon iconfont icon-feedback_fill"></i></label></view>
              <view class='spt2'>玩法说明</view>
              <button style='position:absolute;opacity:0; top:0;left:0;width:100%; height:100%;' form-type='submit'>sdds</button>
           </view>
           </form>
           
         </view>
+
+         <view class='col col-25'>
+        <view class='col_line'></view>
+         
+         <form report-submit='true' bindsubmit ="gogame"> 
+          <view  class="sp_mine" data-tabidx="2"  bindtap=''>
+           
+             <view class='spt1'><label><i style="font-size:30px;  " class="icon iconfont icon-select_fill"></i></label></view>
+             <view class='spt2'>小游戏</view>
+             <button style='position:absolute;opacity:0; top:0;left:0;width:100%; height:100%;' form-type='submit'>sdds</button>
+          </view>
+          </form>
+          
+        </view>
+
+
         <view class='cl'></view>
    
    </view>
@@ -65,16 +81,18 @@
 <view style='min-height:200px; '  >
 
   <view   wx:for="{{lists.ing}}" wx:for-index="index" wx:for-item="item">
-    <navigator wx:if="{{index ==0}}" url='../home/detail?mid={{item.id}}'>
+    <navigator   url='../home/detail?mid={{item.id}}'>
           <view class='rowp nopd' style='padding-left:0px; border:none; padding-right:0px;'>
             <view class='col col-100'>
                 <view class='zhutis' style='font-size:15px; color:#08F;'>
                    <!-- <label class='dot'></label> -->
                    {{item.title}}
-                  <label class='fmoneys'>保证金{{item.promise_money}}元</label>
+                  <label class='fmoneys'></label>
                 </view>
-              <view class='time_ss'>{{item.active_time}}</view>
-              <view class='time'>{{item.adr_name}}</view>
+                
+              <view class='time_ss'>保证金：{{item.promise_money}}元</view>
+              <view class='time_ss'>时间：{{item.active_time}}</view>
+              <view class='time'>地点：{{item.adr_name}}</view>
               <!-- <view class='time'>{{item.address}}</view> -->
               </view>
             <view class='cl'></view>
@@ -82,7 +100,7 @@
       </navigator>
     
     
-    <navigator wx:if="{{index>0}}" url='../home/detail?mid={{item.id}}'>
+    <!-- <navigator wx:if="{{index>0}}" url='../home/detail?mid={{item.id}}'>
           <view class='rowp nopd' style='padding-left:0px; border:none;  padding-right:0px;'>
             <view class='col col-100'>
                 <view class='zhutis' style='font-size:15px; color:#08F;'>
@@ -95,7 +113,7 @@
               </view>
             <view class='cl'></view>
           </view>
-      </navigator>
+      </navigator> -->
     
 
     </view> 

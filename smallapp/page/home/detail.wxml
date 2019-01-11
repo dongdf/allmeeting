@@ -12,7 +12,7 @@
         {{meetinginfo.title}}
         <view class='cl'></view>
       </view>
-      <view class='meetingcontent'>{{meetinginfo.content}}</view>
+      <view class='meetingcontent'><text style='font-size:14px;'>{{meetinginfo.content}}</text></view>
       <view class='cl'></view>
     </view>
   </view>

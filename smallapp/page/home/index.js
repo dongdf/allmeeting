@@ -309,7 +309,7 @@ Page({
       that.getmineinfo();
     }
     return {
-      title: '【'+that.data.mine.nickname+'】赠送您1分钱聚会保证金，点开看看吧！',
+      title: '【'+that.data.mine.nickname+'】赠送您￥1***聚会保证金！',
       path: '/page/home/index?popenid=' + shareMan,
        imageUrl: '../../image/share.jpg',
       complete: function (res) {

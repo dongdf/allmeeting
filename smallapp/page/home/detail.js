@@ -346,14 +346,23 @@ Page({
           wx.hideLoading();
           
           getApp().get('member/changeStatus?id=' + that.data.meetinginfo.id).then(gres => {
-            wx.showModal({
-              title: '参加成功，请记得按时到场哦',
-              content: '您可以设置备忘提醒',
-              showCancel: false
-            })
+
             that.getoptbtns();
             that.getmeeting();
             that.getmeber();
+
+            
+            wx.showModal({
+              title: '参加成功，请记得按时到场哦',
+              content: '您可以设置备忘提醒',
+              showCancel: false,
+              success:function(res){
+                wx.navigateTo({
+                  url: './home/index',
+                })
+              }
+            })
+           
 
           },error=>{
             wx.showModal({

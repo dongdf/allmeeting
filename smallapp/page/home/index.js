@@ -20,6 +20,34 @@ Page({
     isTodayWeek: false,
     todayIndex: 0
   },
+  proma:function(){
+    getApp().get('share/getQRcode').then(res=>{
+
+      var imgarray = [];
+      imgarray.push(res)
+      wx.previewImage({
+        current: res, // 当前显示图片的http链接
+        urls: imgarray // 需要预览的图片http链接列表
+      })
+
+      // wx.saveImageToPhotosAlbum({
+      //   filePath: res,
+      //   success(res) {
+      //     console.log("保存图片成功")
+      //     console.log(res)
+      //     wx.showToast({
+      //       title: '保存成功',
+      //       icon: 'success',
+      //       duration: 2000
+      //     })
+
+      //   }
+      // })
+
+             
+
+    })
+  },
   bindPhone:function(){
     var that = this;
     if (this.data.mine.mobile){
@@ -153,10 +181,12 @@ Page({
 
   },
   onLoad: function (option) {
+
     if(option.popenid){
       this.setData({
         parentopenid:option.popenid
       })
+      
 
     }
     // this.getalllist(2)
@@ -176,6 +206,7 @@ Page({
 
   },
   onShow:function(){
+    
     if (!wx.getStorageSync('ppid')) {
       wx.redirectTo({
         url: '../home/start?popenid=' + this.data.parentopenid,

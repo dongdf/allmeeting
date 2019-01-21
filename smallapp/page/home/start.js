@@ -20,6 +20,10 @@ Page({
       this.setData({
         popenid: options.popenid
       })
+      // wx.showModal({
+      //   title: '',
+      //   content: options.popenid + '',
+      // })
     }
 
     

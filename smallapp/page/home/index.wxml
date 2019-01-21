@@ -168,12 +168,16 @@
 
 <view class='wechat'>
   <view class='rowsp'>
-     <view class='col col-50'>
+     <view class='col col-33'>
       <button open-type="feedback" style='font-size:14px; border:none;' plain='true'><i class="icon iconfont icon-brush"></i>意见反馈</button>
 
      </view>
-     <view class='col col-50'>
+     <view class='col col-33'>
            <button open-type="contact" style='font-size:14px; border:none;' plain='true'><i class="icon iconfont icon-customerservice_fill"></i>在线客服</button>
+
+     </view>
+     <view class='col col-33'>
+           <button   bindtap='proma' style='font-size:14px; color:#ea5f3a; border:none;' plain='true'><i class="icon iconfont icon-picture_fill" style="color:#ea5f3a"></i>生成海报</button>
 
      </view>
      <view class='cl'></view>
